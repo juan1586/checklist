@@ -1,0 +1,15 @@
+hacer la vista para revisar pruebas de las imagenes
+revisar que el check sea para el user logueado
+
+el auditor puede auditar cual tienda?
+
+los checklist se deben listar para el usuario logueado de acuerdo a los roles
+
+validar hora en los checklist para saber si se responde dentro del horario
+
+poner dinamico el checlist auditor
+
+evaluar ver vista email cuado no hay respuestas no
+
+
+cuando saco las preguntas email solo valido el no de las de auditor falta validar no de los demas check
