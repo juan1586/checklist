@@ -234,7 +234,9 @@
                     </div>
                 </div>
               @endif
+              <div class="form-group">
               @yield('content')
+              </div>
             </div>
                   
               <div class="box-footer">

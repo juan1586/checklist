@@ -12,8 +12,8 @@
                     <p>*{{ $sub->Nombre }}</p>
                 @endforeach
             
-            <p><a href="{{ route('Check', $pregunta->id_checklist)}}">Ir a checklist</a></p>
-            <p><a href="/pregunta"></i>Ir a menú</a></p>
+            <p><a href="{{ route('Check', $pregunta->id_checklist)}}">Volver a la lista de chequeo</a></p>
+            <p><a href="/pregunta"></i>Ir a menú principal</a></p>
         </div>
         </div>
     </div>
