@@ -38,19 +38,19 @@ class RespuestaController extends Controller
             $fechaActual = $date->format('Y-m-d'); // Obtengo el dia actual año mes dia
             // Lista todos los cheklist y compara y si corresponde a cada 
             for($i=0;$i<count($checklists);$i++){
-              
                
                 if($checklists[$i]->frecuencias->Nombre == "Bimestral"
                     && $day->bimonthly($fechaActual) && $day->isHoliday($fechaActual)
                     && $day->dayNotEnabled($weekday)&& $day->btnActive($checklists[$i]->id)){
-                      array_push($arrayChecklists, $checklists[$i]);
+                       
+                        array_push($arrayChecklists, $checklists[$i]);
                 }elseif($checklists[$i]->frecuencias->Nombre == "Semestral"
                     && $day->biannual($fechaActual) && $day->isHoliday($fechaActual)
                     && $day->dayNotEnabled($weekday)&& $day->btnActive($checklists[$i]->id)){
 
                       array_push($arrayChecklists, $checklists[$i]);
                 }elseif(($checklists[$i]->frecuencias->Fecha_inicial <= $fechaActual 
-                    && $checklists[$i]->id != 12   
+                    && $checklists[$i]->id != 1   
                     && $checklists[$i]->frecuencias->Fecha_final >= $fechaActual) 
                     && $day->isHoliday($fechaActual)&& $day->dayNotEnabled($weekday) 
                     && $day->btnActive($checklists[$i]->id,$fechaActual)

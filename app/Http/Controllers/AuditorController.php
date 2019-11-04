@@ -29,7 +29,8 @@ class AuditorController extends Controller
                 ->whereRaw('preguntas.id = respuestas.id_pregunta')
                 ->whereRaw('respuestas.fecha=(select CURDATE())')
                 ->where('id_usuario', auth()->user()->id);
-        })->where('id_checklist',12)->paginate(40); //-> El paginate es solo para operar en la vista con el total
+        })->where('id_checklist',1)->paginate(40); // El id 1 pertenece al auditor
+         //-> El paginate es solo para operar en la vista con el total
         // Si hay preguntas por responder las manda a la vista.
         if(count($preguntas)>0 ){
             
@@ -68,7 +69,6 @@ class AuditorController extends Controller
             $respuesta->fecha = $fecha;
             $respuesta->id_usuario = $request->input('id_usuario');
             $respuesta->id_checklist = $request->input('id_checklist');
-            $respuesta->tienda_id_no_fk = $request->input('tienda_id_no_fk');
 
             if($respuesta->save()){
                 DB::commit();

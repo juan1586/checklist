@@ -16,8 +16,8 @@ class CreatePreguntasTable extends Migration
         Schema::create('preguntas', function (Blueprint $table) {
             $table->increments('id');
             $table->text('Nombre');
-            $table->text('Descripcion')->nullable()->change();
-            $table->unsignedInteger('id_checklist')->default(2);
+            $table->text('Descripcion')->nullable();
+            $table->unsignedInteger('id_checklist');
 
             $table->foreign('id_checklist')->references('id')->on('checklists')
             ->onDelete('cascade')

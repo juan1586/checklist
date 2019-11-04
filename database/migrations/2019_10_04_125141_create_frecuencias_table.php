@@ -16,7 +16,7 @@ class CreateFrecuenciasTable extends Migration
         Schema::create('frecuencias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Nombre');
-            $table->text('Descripcion');
+            $table->text('Descripcion')->nullable();;
             $table->date('Fecha_inicial')->nullable();
             $table->date('Fecha_final')->nullable();
             $table->timestamps();

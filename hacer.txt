@@ -13,3 +13,5 @@ evaluar ver vista email cuado no hay respuestas no
 
 
 cuando saco las preguntas email solo valido el no de las de auditor falta validar no de los demas check
+
+algo

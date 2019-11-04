@@ -16,18 +16,19 @@ class CreateChecklistsTable extends Migration
         Schema::create('checklists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Nombre')->unique();
-            $table->text('Descripcion');            
-            $table->unsignedInteger('id_usuario');
-            $table->unsignedInteger('id_frecuencia');
+            $table->text('Descripcion')->nullable();;            
+            $table->unsignedInteger('id_usuario')->nullable();
+            $table->unsignedInteger('id_frecuencia')->nullable();
             $table->timestamps();
             
             $table->foreign('id_usuario')->references('id')->on('users')
-            ->onDelete('cascade')
+            ->onDelete('set null')
             ->onUpdate('cascade');
 
             $table->foreign('id_frecuencia')->references('id')->on('frecuencias')
             ->onDelete('set null')
             ->onUpdate('cascade');
+            
         });
     }
 

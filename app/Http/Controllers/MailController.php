@@ -24,8 +24,7 @@ class MailController extends Controller
 
     public function create()
     {
-        $tiendas = User::where('id_rol',3)->pluck('name','name');
-        return View('correos.create', compact('tiendas'));
+        return View('correos.create');
     }
     // Enviar correos esta pendiente
     public function send(StoreMailRequest $request)

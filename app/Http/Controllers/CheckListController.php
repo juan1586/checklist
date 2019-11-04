@@ -114,7 +114,7 @@ class CheckListController extends Controller
 
     public function destroy($id)
     {
-        if($id != 12){
+        if($id != 1){// Este id es el checklist de auditor
 
             $checklist = Checklist::find($id)->delete();
         }
