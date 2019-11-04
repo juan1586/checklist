@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                 <a href="/checklist/create" class="btn btn-info btn-sm ">Nuevo</a> 
 
