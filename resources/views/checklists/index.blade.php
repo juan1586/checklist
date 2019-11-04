@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                <a href="/checklist/create" class="btn btn-info btn-sm ">Nuevo</a> 
+                <a href="/checklist/create" class="btn btn-info btn-sm ">Crear nuevo Checklist</a> 
 
                     <div class="card-header"><h2>CheckList </h2>  
                        Total Registros: {{ $checklists->total()}} - Pagina {{ $checklists->currentPage()}} de {{ $checklists->lastPage()}}
