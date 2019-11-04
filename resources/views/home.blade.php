@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <h1>Panel de reportes para parra!!</h1>
+                    <h1>En Construcción</h1>
                 </div>
             </div>
         </div>
