@@ -2,11 +2,11 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-11">
                 <div class="card">
-                <a href="/pregunta/create" class="btn btn-info btn-sm ">Nuevo</a> 
+                <a href="/pregunta/create" class="btn btn-info btn-sm ">Crear una nueva pregunta</a> 
 
-                    <div class="card-header"><h2>preguntas </h2>  
+                    <div class="card-header"><h2>Panel de preguntas</h2>  
                        Total Registros: {{ $preguntas->total()}} - Pagina {{ $preguntas->currentPage()}} de {{ $preguntas->lastPage()}}
 
                     </div>
