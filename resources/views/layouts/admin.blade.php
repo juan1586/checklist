@@ -78,7 +78,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="{{asset('dist/img/logo.png')}}" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{ Auth::user()->roles->Nombre }} </span>
+              <span class="hidden-xs">{{ Auth::user()->name }}  </span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -147,18 +147,19 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            @if(Auth::user()->id_rol == 1 )
-            <li><a href="/home"><i class="fa fa-circle-o"></i> Panel Reportes</a></li>
-            <li><a href="/user"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-            @endif
+           
             @if(Auth::user()->id_rol == 1 || Auth::user()->id_rol == 2)
-            <li><a href="/frecuencia"><i class="fa fa-circle-o"></i> Frecuencias</a></li>
-            <li><a href="/checklist"><i class="fa fa-circle-o"></i>CheckList</a></li>
             <li><a href="/pregunta"><i class="fa fa-circle-o"></i>Preguntas</a></li>
-            <li><a href="/auditor"><i class="fa fa-circle-o"></i>Auditor</a></li>
-            <li><a href="/imprimir"><i class="fa fa-circle-o"></i>Imprimir Preguntas</a></li>
+            <li><a href="/checklist"><i class="fa fa-circle-o"></i>CheckList</a></li>
+            <li><a href="/frecuencia"><i class="fa fa-circle-o"></i>Frecuencias</a></li>
+            <!-- <li><a href="/auditor"><i class="fa fa-circle-o"></i>Auditor</a></li> -->
+            <!-- <li><a href="/imprimir"><i class="fa fa-circle-o"></i>Imprimir Preguntas</a></li> -->
             @endif
             <li><a href="/indexHome"><i class="fa fa-circle-o"></i>CheckList Pendientes </a></li>
+            @if(Auth::user()->id_rol == 1 )
+            <li><a href="/home"><i class="fa fa-circle-o"></i>Panel Reportes</a></li>
+            <li><a href="/user"><i class="fa fa-circle-o"></i>Usuarios</a></li>
+            @endif
           </ul>
         </li>
        

@@ -21,7 +21,7 @@ class ValidateDay
             '2019-08-07',  //  Batalla de Boyacá
             '2019-08-19',  //  La asunción de la Virgen
             '2019-10-14',  //  Día de la Raza
-            '2019-11-04',  //  Todos los Santos
+           // '2019-11-04',  //  Todos los Santos
             '2019-11-11',  //  Independencia de Cartagena
             '2019-12-25',  //  Natividad del Señor 
         );
