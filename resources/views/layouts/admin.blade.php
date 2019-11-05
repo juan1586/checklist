@@ -152,8 +152,8 @@
             <li><a href="/pregunta"><i class="fa fa-circle-o"></i>Preguntas</a></li>
             <li><a href="/checklist"><i class="fa fa-circle-o"></i>CheckList</a></li>
             <li><a href="/frecuencia"><i class="fa fa-circle-o"></i>Frecuencias</a></li>
-            <!-- <li><a href="/auditor"><i class="fa fa-circle-o"></i>Auditor</a></li> -->
-            <!-- <li><a href="/imprimir"><i class="fa fa-circle-o"></i>Imprimir Preguntas</a></li> -->
+            <li><a href="/auditor"><i class="fa fa-circle-o"></i>Checklist Retailers</a></li>
+            <li><a href="/imprimir"><i class="fa fa-circle-o"></i>Imprimir Preguntas</a></li>
             @endif
             <li><a href="/indexHome"><i class="fa fa-circle-o"></i>CheckList Pendientes </a></li>
             @if(Auth::user()->id_rol == 1 )

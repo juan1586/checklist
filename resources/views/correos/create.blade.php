@@ -8,15 +8,15 @@
     
     <div class="form-group">
       {!! Form::label('Correo','Correo')!!}
-      {!! Form::email('correo',null,['class'=>'form-control'])!!}
+      {!! Form::email('correo',null,['class'=>'form-control','placeholder'=>'Correo'])!!}
     </div>
     <div class="form-group">
       {!! Form::label('tienda','Tienda')!!}
-      {!! Form::select('name', $tiendas, null, ['class' => 'form-control']) !!}
+      {!! Form::text('name', null, ['class' => 'form-control','placeholder'=>'Tienda']) !!}
     </div>
     <div class="form-group">
       {!! Form::label('mensaje','Mensaje')!!}
-      {!! Form::textArea('mensaje',null,['class'=>'form-control','rows'=>'3'])!!}
+      {!! Form::textArea('mensaje',null,['class'=>'form-control','rows'=>'3','placeholder'=>'Mensaje'])!!}
     </div>
       {!! Form::submit('Enviar', ['class' => 'btn btn-danger btn-sm']) !!}
     

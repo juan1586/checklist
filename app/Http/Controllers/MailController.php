@@ -46,7 +46,7 @@ class MailController extends Controller
                     ->whereRaw('respuestas.fecha=(select CURDATE())')
                     ->where('respuesta',0)
                     ->where('id_usuario', auth()->user()->id);
-            })->where('id_checklist',12)->get();
+            })->where('id_checklist',1)->get(); // Este check #1 es solo el de auditor.
 
         
             $email= $request->input('correo');
