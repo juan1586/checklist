@@ -80,13 +80,19 @@ class FrecuenciaController extends Controller
             $frecuencia->Descripcion = $request->input('Descripcion');
             $frecuencia->Fecha_inicial = $request->input('Fecha_inicial');
             $frecuencia->Fecha_final = $request->input('Fecha_final');
-            if($frecuencia->save())
-            {
-                DB::commit();
-                return redirect()->route('frecuencia.index')->with('info','Editado con exito'); 
+            // Se hace esta validacion por que la frecuencia bimestral y semestral no se deben cambiar, 
+            if($id != 1 && $id != 2 ){
+                if($frecuencia->save())
+                {
+                    DB::commit();
+                    return redirect()->route('frecuencia.index')->with('info','Editado con exito'); 
+                }
+                DB::rollback();
+                return back()->with('error', 'Error al editar');
+            }else{
+                return redirect()->route('frecuencia.index')->with('info','Esta frecuencia no se puede editar'); 
             }
-            DB::rollback();
-            return back()->with('error', 'Error al crear');
+
 
         }catch(Exception $e)
         {
@@ -99,8 +105,13 @@ class FrecuenciaController extends Controller
     {
         
         $frecuencia = Frecuencia::find($id);
-        $frecuencia->delete();
-        return redirect()->route('frecuencia.index')->with('info','Eliminado con exito'); 
+        if($id != 1 && $id != 2 ){
+
+            $frecuencia->delete();
+            return redirect()->route('frecuencia.index')->with('info','Eliminado con exito'); 
+        }else{
+            return redirect()->route('frecuencia.index')->with('info','Esta frecuencia no se puede eliminar'); 
+        }
     }
 
     

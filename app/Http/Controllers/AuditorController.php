@@ -31,7 +31,7 @@ class AuditorController extends Controller
                 ->where('id_usuario', auth()->user()->id)
                 ->orderBy('id','desc');
         })->where('id_checklist',1)->paginate(40); // El id 1 pertenece al auditor
-         //-> El paginate es solo para operar en la vista con el total
+         // El paginate es solo para operar en la vista con el total
         // Si hay preguntas por responder las manda a la vista.
         if(count($preguntas)>0 ){
             

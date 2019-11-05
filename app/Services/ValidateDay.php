@@ -6,7 +6,9 @@ use App\Preguntas;
 use DB;
 class ValidateDay
 {
-    public function isHoliday($day){//Retorna falso si el dia que entra por parametro es festivo
+    //Retorna falso si el dia que entra por parametro es festivo
+    // Valida los dias festivos
+    public function isHoliday($day){
         $holidays = array(       
             '2019-01-01',  //  Año Nuevo (irrenunciable)
             '2019-01-07',  //  Día de los reyes magos
@@ -34,8 +36,9 @@ class ValidateDay
         return true;
     }  
     
-
-    public function bimonthly($day){// Retorna verdadero si el día es igual
+    // Retorna verdadero si el día es igual para mostrar el checklist.
+    // Frecuencia Bimestral
+    public function bimonthly($day){
         $holidays = array(       
             '2019-10-16',  
             '2019-10-17',
@@ -49,12 +52,11 @@ class ValidateDay
         }
         return false;
     }   
-    
-    public function biannual($day){// Retorna verdadero si el día es igual
+   // Retorna verdadero si el día es igual.
+   // Frecuencia Semestral.
+    public function biannual($day){
         $date = array(       
             '2019-10-17',  
-            
-
             
         );
         for($i = 0; $i < count($date); $i++){
@@ -65,10 +67,12 @@ class ValidateDay
         }
         return false;
     }  
-    public function dayNotEnabled($day){// Retorna falso si es sabado o domingo
+
+    // Retorna falso si es sabado o domingo.
+    public function dayNotEnabled($day){
         $days = array(       
-            6,  
-            7,
+            6,  // Sabado.
+            7, // Domingo.
             
         );
         for($i = 0; $i < count($days); $i++){
@@ -79,6 +83,9 @@ class ValidateDay
         }
         return true;
     }
+
+    // Valida si hay preguntas por responder.
+    
     public function btnActive($id_checklist)
     {
         $preguntas = DB::select('SELECT *FROM preguntas as t1
