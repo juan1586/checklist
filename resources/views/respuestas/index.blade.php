@@ -15,6 +15,7 @@
 </div>
 @endif
 <table class="table-striped table-bordered table-condensed table-hover col-sm-12">
+  <thead>
 <tr>
   <th>
     Tarea
@@ -26,7 +27,7 @@
     Mas informacion
   </th>
 </tr>
-
+</thead>
 @php($con = 0)
 @foreach ($preguntas as $pregunta)
 {!! Form::open(['route' => 'store', 'method' =>'POST','files' => true, 'class'=>'frms']) !!}
