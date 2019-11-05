@@ -8,7 +8,7 @@
     <div class="col-md-8 offset-md-2">
       <div class="alert alert-success alert-dismissible text-center">
         <button class="close" data-dismiss="alert" aria-label="close">&times</button>
-        <strong>!Ya no hay mas tareas por pendientes!</strong>
+        <strong>!Ya no hay mas tareas pendientes!</strong>
       </div>
     </div>
   </div>
@@ -41,8 +41,6 @@
   <tr>
     <td>
     {!! Form::label('Nombre',$pregunta->Nombre, ['class' => 'form-check-label','for'=>'check'.$con]) !!}
-   
-   
     </td>
     <td>
     {{Form::checkbox('respuesta',null,null,['onclick'=>'marcado("'.$con.'")','class' => 'form-check-input', 'id' => 'Nombre']) }}
@@ -55,8 +53,9 @@
     @php($con++)
   </div>
 </div>
-
+@php($conSub = 0)
 @foreach( $pregunta->subPreguntas as $sub)
+@php($conSub++)
 <tr>
   <td>
   <label for=""> Subtarea: {{ $sub->Nombre }}</label>
@@ -66,7 +65,7 @@
   </td>
   </tr>
 @endforeach
-
+{!! Form::text('contSub', $conSub, ['class' => 'form-control']) !!}
 
 {!! Form::hidden('descripcion',$pregunta->descripcion,['class'=>'descripcion']) !!}
 

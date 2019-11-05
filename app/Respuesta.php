@@ -15,6 +15,7 @@ class Respuesta extends Model
         'id_usuario',
         'id_checklist',
         'tienda_id_no_fk',
+        'contSub',
     ];
 
     protected $casts = [

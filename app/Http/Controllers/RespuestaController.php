@@ -118,11 +118,18 @@ class RespuestaController extends Controller
             // }
             DB::BeginTransaction();
             $respuesta = new Respuesta();
-             if($request->input('respuesta') == "on"){
-                $respuesta->respuesta = true;
-             }else{
+
+            // Validación de las sub preguntas
+            if($request->input('subRespuesta') != null){
+                if(count($request->input('subRespuesta')) == $request->input('contSub')){
+                    $respuesta->respuesta = true;
+                }else{
+                    $respuesta->respuesta = false;
+                }            
+            }elseif($request->input('subRespuesta') == null && $request->input('contSub') > 0){
                 $respuesta->respuesta = false;
-             }
+            }
+    
             $respuesta->id_pregunta = $request->input('id_pregunta');          
             
             $respuesta->hora = $hora;
