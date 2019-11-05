@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER','smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -72,7 +72,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+    'encryption' => env('MAIL_ENCRYPTION','tls'),
 
     /*
     |--------------------------------------------------------------------------

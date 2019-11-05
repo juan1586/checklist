@@ -51,6 +51,7 @@ class MailController extends Controller
         
             $email= $request->input('correo');
             Mail::to($email)->send(new SendEmail($data, $respuestasNO));
+            
             return redirect('/indexHome')->with('info', 'Correo enviado');
 
 
