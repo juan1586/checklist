@@ -18,11 +18,16 @@ class ReportesController extends Controller
     {
        
         $tiendas = User::where('id','!=',1)->pluck('name','id');
-
-        $reportes = Respuesta::where('id_usuario',$request->input('tienda'))
-        ->whereRaw('fecha >="'.$request->input('fecha_desde').'" and fecha <="'.$request->input('fecha_hasta').'"')
-        
-        ->paginate(10);
+        if($request->input('fecha_desde') != null and $request->input('fecha_hasta') != null and $request->input('tienda') != null){
+            $reportes = Respuesta::where('id_usuario',$request->input('tienda'))
+            ->whereRaw('fecha >="'.$request->input('fecha_desde').'" and fecha <="'.$request->input('fecha_hasta').'"')
+            ->orderBy('id','DESC')
+            ->paginate(10);
+        }else{
+            $reportes = Respuesta::where('id_usuario','!=',1)
+            ->orderBy('id','DESC')->paginate(10);
+            
+        }
 
 
         return View('reportes.index', compact('tiendas','reportes'));
