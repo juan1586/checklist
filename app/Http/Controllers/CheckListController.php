@@ -21,7 +21,8 @@ class CheckListController extends Controller
     }
     public function index()
     {
-        $checklists =  Checklist::paginate(10);
+        $checklists =  Checklist::orderBy('id','desc')->paginate(10);
+
 
         return View('checklists.index', compact('checklists'));
     }
