@@ -14,11 +14,22 @@
   </div>
 </div>
 @endif
+<table class="table-striped table-bordered table-condensed table-hover col-sm-12">
+<tr>
+  <th>
+    Tarea
+  </th>
+  <th>
+    Completada
+  </th>
+  <th>
+    Mas informacion
+  </th>
+</tr>
+
 @php($con = 0)
 @foreach ($preguntas as $pregunta)
 {!! Form::open(['route' => 'store', 'method' =>'POST','files' => true, 'class'=>'frms']) !!}
-<a href="{{ route('show', $pregunta->id)}}">Ver informacion adicional sobre esta tarea</a>
-<br>
 <div class="form-group">
   {!! Form::hidden('id_pregunta', $pregunta->id, ['class' => 'form-control']) !!}
   {!! Form::hidden('id_usuario', auth()->user()->id, ['class' => 'form-control']) !!}
@@ -26,19 +37,33 @@
 </div>
 <div class="form-group">
   <div class="form-check form-check-inline">
-
-      {!! Form::label('Nombre',$pregunta->Nombre, ['class' => 'form-check-label','for'=>'check'.$con]) !!}
+  <tr>
+    <td>
+    {!! Form::label('Nombre',$pregunta->Nombre, ['class' => 'form-check-label','for'=>'check'.$con]) !!}
    
+   
+    </td>
+    <td>
     {{Form::checkbox('respuesta',null,null,['onclick'=>'marcado("'.$con.'")','class' => 'form-check-input', 'id' => 'Nombre']) }}
+
+    </td>
+    <td>
+    <a href="{{ route('show', $pregunta->id)}}">Ver informacion adicional sobre esta tarea</a>
+    </td>
+    </tr>
     @php($con++)
   </div>
 </div>
-<br>
+
 @foreach( $pregunta->subPreguntas as $sub)
-
-  <label for=""> Subtarea:</label>
-  {{Form::checkbox('subRespuesta[]',1,0,[]) }} {{ $sub->Nombre }}
-
+<tr>
+  <td>
+  <label for=""> Subtarea: {{ $sub->Nombre }}</label>
+  </td>
+  <td>
+  {{Form::checkbox('subRespuesta[]',1,0,[]) }} 
+  </td>
+  </tr>
 @endforeach
 
 
@@ -46,7 +71,7 @@
 
 {!! Form::close() !!}
 @endforeach
-
+</table>
 <script>
   function marcado(i) {
     var formulario = document.getElementsByClassName('frms')[i];
