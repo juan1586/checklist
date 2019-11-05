@@ -152,6 +152,7 @@ class RespuestaController extends Controller
         }
      }
 
+     // Metodo invocado desde preguntas
      public function show($id)
      {
         $pregunta = Pregunta::find($id);

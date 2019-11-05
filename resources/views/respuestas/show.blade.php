@@ -6,7 +6,7 @@
         <div class="thumbnail">
         <div class="caption">
             <h3>{{ $pregunta->Nombre}}</h3>
-            <h4><strong>{{ $pregunta->descripcion}}</strong></h4>
+            <h4><strong>{{ $pregunta->Descripcion}}</strong></h4>
             
                 @foreach( $pregunta->subPreguntas as $sub)
                     <p>*{{ $sub->Nombre }}</p>

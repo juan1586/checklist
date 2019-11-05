@@ -41,6 +41,7 @@
                                             </a>
                                         </td>
                                         <td>
+                                          <!-- Esta funcion va directamente a RepuestasContoller funcion show -->
                                          <a href="{{ route('show', $pregunta->id)}}" class="btn btn-sm btn-info">Ver</a>
                                         </td>
                                        
