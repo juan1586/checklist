@@ -20,7 +20,9 @@ class ReportesController extends Controller
         $tiendas = User::where('id','!=',1)->pluck('name','id');
 
         $reportes = Respuesta::where('id_usuario',$request->input('tienda'))
-                    ->where('fecha',$request->input('fecha'))->paginate(10);
+        ->whereRaw('fecha >="'.$request->input('fecha_desde').'" and fecha <="'.$request->input('fecha_hasta').'"')
+        
+        ->paginate(10);
 
 
         return View('reportes.index', compact('tiendas','reportes'));

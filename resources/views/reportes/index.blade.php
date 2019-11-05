@@ -1,25 +1,26 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>
+    <h3>
         Reportes tiendas
 
         {!! Form::open(['route' => 'reporte','method' => 'GET', 'class'=>'form-inline pull-right']) !!}
-        {!! Form::select('tienda', $tiendas, null, ['class' => 'form-control']) !!}
-        {!! Form::date('fecha', null, ['class' => 'form-control', 'placeholder' => 'fecha']) !!}
+        {!! Form::select('tienda', $tiendas, null, ['class' => 'form-control','placeholder' => 'Tienda']) !!}
+        {!! Form::date('fecha_desde', null, ['class' => 'form-control', 'placeholder' => 'fecha']) !!}
+        {!! Form::date('fecha_hasta', null, ['class' => 'form-control', 'placeholder' => 'fecha']) !!}
             <div class="form-group">
                 <button type="submit" class="btn btn-default">
                     <span class="glyphicon glyphicon-search "></span>
                 </button>
             </div>
         {!! Form::close() !!}
+    </h2>
 
-    </h1>
 
 
     <div class="card-body table-responsive ">
         <table class="table table-striped   ">
-            <th>Id</th>
+            <th>Pregunta</th>
             <th>Respuesta</th>    
             <th>Fecha</th>                                               
             <tbody>
