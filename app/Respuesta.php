@@ -22,5 +22,10 @@ class Respuesta extends Model
         'hora' => 'datetime:H:i:s'
     ];
 
+    public function pregunta()
+    {//Una pregunta pertenece a un cheklist
+        return $this->belongsTo(Pregunta::class,'id_pregunta');
+    }
+
     
 }

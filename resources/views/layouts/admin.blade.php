@@ -157,7 +157,7 @@
             @endif
             <li><a href="/indexHome"><i class="fa fa-circle-o"></i>CheckList Pendientes </a></li>
             @if(Auth::user()->id_rol == 1 )
-            <li><a href="/home"><i class="fa fa-circle-o"></i>Panel Reportes</a></li>
+            <li><a href="/reporte"><i class="fa fa-circle-o"></i>Panel Reportes</a></li>
             <li><a href="/user"><i class="fa fa-circle-o"></i>Usuarios</a></li>
             @endif
           </ul>

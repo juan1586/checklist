@@ -37,3 +37,5 @@ Route::get('Check/{id}','RespuestaController@getCheck')->name('Check');
 Route::get('show/{id}','RespuestaController@show')->name('show');
 Route::get('indexHome','RespuestaController@indexHome')->name('indexHome');
 Route::post('store','RespuestaController@store')->name('store');
+
+Route::get('reporte','ReportesController@index')->name('reporte');
