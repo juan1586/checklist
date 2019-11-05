@@ -2,7 +2,7 @@
 
 namespace App\Services;
 use App\Respuesta;
-use App\Preguntas;
+use App\Pregunta;
 use DB;
 class ValidateDay
 {
@@ -88,11 +88,22 @@ class ValidateDay
     
     public function btnActive($id_checklist)
     {
-        $preguntas = DB::select('SELECT *FROM preguntas as t1
-        WHERE NOT EXISTS
-            (SELECT * FROM respuestas as t2 WHERE t1.id = t2.id_pregunta and t2.fecha =(select CURDATE())  and t2.id_usuario =?)
-        AND T1.id_checklist =?', [auth()->user()->id,$id_checklist]);
+        // $preguntas = DB::select('SELECT *FROM preguntas as t1
+        // WHERE NOT EXISTS
+        //     (SELECT * FROM respuestas as t2 WHERE t1.id = t2.id_pregunta and t2.fecha =(select CURDATE())  and t2.id_usuario =?)
+        // AND t1.id_checklist =?', [auth()->user()->id,$id_checklist]);
 
+
+       // Consulta mejorada con respecto a la anterior
+        $preguntas = Pregunta::select('id','Nombre','descripcion','id_checklist')
+        ->whereNotExists(function($query)
+        {
+            $query->select(DB::raw(1))
+                ->from('respuestas')
+                ->whereRaw('preguntas.id = respuestas.id_pregunta')
+                ->whereRaw('respuestas.fecha=(select CURDATE())')
+                ->where('id_usuario', auth()->user()->id);
+        })->where('id_checklist',$id_checklist)->get();
         if(count($preguntas) > 0){
             return true;
         }
