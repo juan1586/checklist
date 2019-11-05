@@ -21,7 +21,7 @@ class PreguntaController extends Controller
     }
     public function index()
     {
-        $preguntas = Pregunta::paginate(10);
+        $preguntas = Pregunta::orderBy('id','desc')->paginate(10);
        
         return View('preguntas.index',compact('preguntas'));
     }

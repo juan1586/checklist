@@ -21,7 +21,7 @@ class FrecuenciaController extends Controller
 
     public function index()
     {
-        $frecuencias = Frecuencia::paginate(10);
+        $frecuencias = Frecuencia::orderBy('id','desc')->paginate(10);
         return View('frecuencias.index', compact('frecuencias'));
     }
 
