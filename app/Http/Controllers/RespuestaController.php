@@ -128,6 +128,8 @@ class RespuestaController extends Controller
                 }            
             }elseif($request->input('subRespuesta') == null && $request->input('contSub') > 0){
                 $respuesta->respuesta = false;
+            }elseif($request->input('subRespuesta') == null && $request->input('contSub') == 0){
+                $respuesta->respuesta = true;
             }
     
             $respuesta->id_pregunta = $request->input('id_pregunta');          
