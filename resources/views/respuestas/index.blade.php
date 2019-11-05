@@ -65,7 +65,7 @@
   </td>
   </tr>
 @endforeach
-{!! Form::text('contSub', $conSub, ['class' => 'form-control']) !!}
+{!! Form::hidden('contSub', $conSub, ['class' => 'form-control']) !!}
 
 {!! Form::hidden('descripcion',$pregunta->descripcion,['class'=>'descripcion']) !!}
 
