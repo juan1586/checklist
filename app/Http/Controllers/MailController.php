@@ -64,18 +64,21 @@ class MailController extends Controller
         
     }
     public function refrescar()
-    {   // Se instancia la clase validate para saber si hay check pendientes 
+    {  
+        $date = Carbon::now();
+        $hora= $date->format('H:i');
+         // Se instancia la clase validate para saber si hay check pendientes 
         // y mandar la cantidad pendiente por email
         $validatemail = new ValidateMail();
         
-        if(count($validatemail->cantidadChecklist())> 0)
+        if(count($validatemail->cantidadChecklist()) > 0 && ($hora == "10:00" || $hora == "16:00" ))
         {
             $checksPendientes = $validatemail->cantidadChecklist();
             $email = auth()->user()->email;
             Mail::to($email)->send(new PendienteChecklistMail($checksPendientes));
             return redirect('/indexHome')->with('info', 'Correo enviado con refresh');
         }else{
-            return redirect('/indexHome')->with('info', 'No se envia nd');
+            return redirect('/indexHome');
         }
     }
 }
