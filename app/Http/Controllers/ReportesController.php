@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ReportesController extends Controller
 {
-    public function __construct()
+    public function __construct() 
     {
         $this->middleware('admin');
         $this->middleware('auth');

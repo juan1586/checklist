@@ -40,13 +40,28 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <style>
-      @media{
-          .modal-lg {
-              width: 80%;
-              height: 110%; /* control height here */
-          }
+    @media{
+      .modal-lg {
+        width: 80%;
+        height: 110%; /* control height here */
       }
-      </style>
+    }
+ </style>
+  <?php 
+    //Se saca la hora para enviar correo o notificación automatica
+    use Carbon\Carbon;
+    $date = Carbon::now();
+    $hora= $date->format('H:i');
+    header("Refresh: 10;");
+    if(($hora == "10:00")||($hora >= "15:44" && $hora <= "16:30")){
+      // Demonio para refrescar la pagina esta url es del controlador mail
+      //header("Refresh: 10; URL='/refrescar'"); 
+      // Refresca esta por q es solo la del indexHome la q tiene las notificaciones
+      //header(" URL='/refrescar' ");
+      header("Location: '/refrescar'");
+
+    }
+   ?>
 </head>
 <body class="hold-transition skin-black sidebar-mini">
 <div class="wrapper">
@@ -149,17 +164,17 @@
           <ul class="treeview-menu">
            
             @if(Auth::user()->id_rol == 1 || Auth::user()->id_rol == 2)
-            <li><a href="/pregunta"><i class="fa fa-circle-o"></i>Preguntas</a></li>
-            <li><a href="/checklist"><i class="fa fa-circle-o"></i>CheckList</a></li>
             <li><a href="/frecuencia"><i class="fa fa-circle-o"></i>Frecuencias</a></li>
+            <li><a href="/checklist"><i class="fa fa-circle-o"></i>CheckList</a></li>
+            <li><a href="/pregunta"><i class="fa fa-circle-o"></i>Preguntas</a></li>
             <li><a href="/auditor"><i class="fa fa-circle-o"></i>Checklist Retailers</a></li>
             <li><a href="/imprimir"><i class="fa fa-circle-o"></i>Imprimir Preguntas</a></li>
             @endif
-            <li><a href="/indexHome"><i class="fa fa-circle-o"></i>CheckList Pendientes </a></li>
             @if(Auth::user()->id_rol == 1 )
             <li><a href="/reporte"><i class="fa fa-circle-o"></i>Panel Reportes</a></li>
             <li><a href="/user"><i class="fa fa-circle-o"></i>Usuarios</a></li>
             @endif
+            <li><a href="/indexHome"><i class="fa fa-circle-o"></i>CheckList Pendientes </a></li>
           </ul>
         </li>
        

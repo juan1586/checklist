@@ -28,6 +28,7 @@ Route::resource('imprimir','PreguntaImprimirController');
 Route::get('imprimirPdf','PdfController@pdf')->name('pdf');
 Route::get('imprimirPdfInfo','PdfController@pdfInfo')->name('pdfInfo');
 Route::post('mail','MailController@send')->name('mail.create');
+Route::get('refrescar','MailController@refrescar')->name('refrescar');
 Route::get('mail','MailController@create')->name('mail'); 
 
 Route::get('subp/{id}','SubPreguntaController@create')->name('subp');
