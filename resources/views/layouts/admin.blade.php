@@ -48,22 +48,10 @@
     }
  </style>
   <?php 
-    //Se saca la hora para enviar correo o notificación automatica
-    use Carbon\Carbon;
-    $date = Carbon::now();
-    $hora= $date->format('H:i');
-    header("Refresh: 10;");
-    if(($hora == "10:00")||($hora >= "15:44" && $hora <= "16:30")){
-      // Demonio para refrescar la pagina esta url es del controlador mail
-      //header("Refresh: 10; URL='/refrescar'"); 
-      // Refresca esta por q es solo la del indexHome la q tiene las notificaciones
-      //header(" URL='/refrescar' ");
-      header("Location: '/refrescar'");
-
-    }
+    header("Refresh:3550; URL='/refrescar'"); 
    ?>
 </head>
-<body class="hold-transition skin-red sidebar-mini">
+<body class="hold-transition skin-red-light sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
@@ -171,11 +159,47 @@
             <li><a href="/imprimir"><i class="fa fa-circle-o"></i>Imprimir Preguntas</a></li>
             @endif
             @if(Auth::user()->id_rol == 1 )
-            <li><a href="/reporte"><i class="fa fa-circle-o"></i>Panel Reportes</a></li>
-            <li><a href="/user"><i class="fa fa-circle-o"></i>Usuarios</a></li>
+
+            
             @endif
             <li><a href="/indexHome"><i class="fa fa-circle-o"></i>CheckList Pendientes </a></li>
           </ul>
+          @if(Auth::user()->id_rol == 1 )
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>Informes</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           
+          
+          
+            <li><a href="/reporte"><i class="fa fa-circle-o"></i>Panel Reportes</a></li>
+
+           
+
+          </ul>
+          @endif
+          @if(Auth::user()->id_rol == 1 )
+          <a href="#">
+            <i class="fa fa-edit"></i>
+            <span>Configuración</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           
+          
+          
+            <li><a href="/user"><i class="fa fa-circle-o"></i>Usuarios</a></li>
+
+           
+
+          </ul>
+          @endif
         </li>
        
        
