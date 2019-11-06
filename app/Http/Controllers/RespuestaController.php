@@ -53,7 +53,6 @@ class RespuestaController extends Controller
                     && $checklists[$i]->id != 1   
                     && $checklists[$i]->frecuencias->Fecha_final >= $fechaActual) 
                     && $day->isHoliday($fechaActual)&& $day->dayNotEnabled($weekday) 
-                    && $day->btnActive($checklists[$i]->id,$fechaActual)
                     && $day->btnActive($checklists[$i]->id)){
 
                       array_push($arrayChecklists, $checklists[$i]);
@@ -88,7 +87,6 @@ class RespuestaController extends Controller
                 ->whereRaw('respuestas.fecha=(select CURDATE())')
                 ->where('id_usuario', auth()->user()->id);
         })->where('id_checklist',$id)->paginate(40);
-
      
         return View('respuestas.index', compact('preguntas'));
 

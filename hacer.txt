@@ -14,3 +14,9 @@ poner dinamico el checlist auditor ->ok
 cuando saco las preguntas email solo valido el no de las de auditor falta validar no de los demas check
 
 algo
+
+
+cambiar en el servidor AuditorController el id del checklist
+
+
+en checklist retailer hay q poner q tienda se audita

@@ -43,7 +43,7 @@ class AuditorController extends Controller
         }
     
     }
-
+ 
     public function store(StoreAuditorRequest $request)
     {
         $imagen="";
@@ -56,6 +56,8 @@ class AuditorController extends Controller
             $file->move(public_path().'/images/', $imagen);
             
         }
+
+        
         $date = Carbon::now();
         $hora = $date->format('h:i:s');
         $fecha = $date->format('Y-m-d');

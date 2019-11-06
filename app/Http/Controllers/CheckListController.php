@@ -8,7 +8,7 @@ use App\Checklist;
 use App\User;
 use App\Tipo;
 use App\Http\Requests\storeChecklistRequest;
-use App\Http\Requests\updateChecklistRequest;
+use App\Http\Requests\UpdateChecklistRequest;
 use DB;
 use Exception;
 
@@ -81,7 +81,7 @@ class CheckListController extends Controller
         
     }
 
-    public function update(updateChecklistRequest $request, $id)
+    public function update(UpdateChecklistRequest $request, $id)
     {
         try{
             
