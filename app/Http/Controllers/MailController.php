@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Mail\SendEmail;
+use App\Mail\PendienteChecklistMail;
 use Illuminate\Support\Facades\Mail;
-use App\Services\ValidateDay;
+use App\Services\ValidateMail;
 use App\Http\Requests\StoreMailRequest;
 use Exception;
 use Carbon\Carbon;
@@ -11,6 +12,7 @@ use App\Respuesta;
 use App\User;
 use App\Pregunta;
 use DB;
+
 
 use Illuminate\Http\Request;
 
@@ -60,5 +62,20 @@ class MailController extends Controller
             return back()->with('error', 'Error '.$msg);
         }
         
+    }
+    public function refrescar()
+    {   // Se instancia la clase validate para saber si hay check pendientes 
+        // y mandar la cantidad pendiente por email
+        $validatemail = new ValidateMail();
+        
+        if(count($validatemail->cantidadChecklist())> 0)
+        {
+            $checksPendientes = $validatemail->cantidadChecklist();
+            $email = auth()->user()->email;
+            Mail::to($email)->send(new PendienteChecklistMail($checksPendientes));
+            return redirect('/indexHome')->with('info', 'Correo enviado con refresh');
+        }else{
+            return redirect('/indexHome')->with('info', 'No se envia nd');
+        }
     }
 }

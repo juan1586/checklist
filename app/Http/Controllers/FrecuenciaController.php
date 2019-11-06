@@ -105,7 +105,7 @@ class FrecuenciaController extends Controller
     {
         
         $frecuencia = Frecuencia::find($id);
-        if($id != 1 && $id != 2 ){
+        if($id != 1 && $id != 2 ){// Estas frecuencias no se pueden elimiar ni editar más las otras
 
             $frecuencia->delete();
             return redirect()->route('frecuencia.index')->with('info','Eliminado con exito'); 

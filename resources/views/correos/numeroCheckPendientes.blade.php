@@ -5,21 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Latest compiled and minified CSS -->
-
-    <title>Document</title>
+    <title>Checklist Pendientes</title>
 </head>
 <body>
     <div class="container">
         <div class="page-header">
-          <h2>Pendientes tienda <small>{{ $data['name']}}</small></h2>
+          <h2>Checklist pendientes</h2>
+          <p>Estos son los checklist que tienes pendientes</p>
         </div>
-        <p>Auditor:<b>{{ $data['usuario']}}</b></p>
-        <p>Comentarios: <b>{{ $data['mensaje']}}</b></p>
-        <p>Preguntas no respondidas:</p>
-        @foreach($respuestasNO as $respuesta)
-        {{ $respuesta->Nombre }}
+        
+        @foreach($checks as $check)
+        <p>
+         <h4>{{ $check->Nombre }}</h4>
+        <p>
         @endforeach
     </div>
-
 </body>
 </html>
