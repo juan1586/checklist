@@ -22,5 +22,9 @@ class RolesTableSeeder extends Seeder
         App\Rol::create([
             'Nombre' => 'Anfitrión'
         ]);
+        App\Rol::create([
+            'Nombre' => 'Invitado'
+        ]);
     }
+
 }

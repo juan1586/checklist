@@ -174,7 +174,9 @@
             <li><a href="/reporte"><i class="fa fa-circle-o"></i>Panel Reportes</a></li>
             <li><a href="/user"><i class="fa fa-circle-o"></i>Usuarios</a></li>
             @endif
+            @if(Auth::user()->id_rol == 1 || Auth::user()->id_rol == 2 || Auth::user()->id_rol == 3)
             <li><a href="/indexHome"><i class="fa fa-circle-o"></i>CheckList Pendientes </a></li>
+            @endif
           </ul>
         </li>
        

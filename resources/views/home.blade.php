@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <h1>En Construcción</h1>
+                    <h3>Ponte en contacto con el administrador para que te asige un rol!!</h3>
                 </div>
             </div>
         </div>
