@@ -27,7 +27,7 @@ class IsGuest
             return $next($request);
 
         }else{
-            return redirect('/home')->with('error', 'Tines un rol invitado');
+            return redirect('/home')->with('error', 'Tienes un rol de invitado');
            
         }
     }
