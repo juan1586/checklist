@@ -17,9 +17,7 @@ class RespuestaController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('isGuest');
-        
-        
+        $this->middleware('isGuest'); 
     }
     public function indexHome()
     {  

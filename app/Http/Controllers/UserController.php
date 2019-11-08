@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
-use\App\Rol;
+use App\Rol;
 use Exception;
 use Carbon\Carbon;
 
