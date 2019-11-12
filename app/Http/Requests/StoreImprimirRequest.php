@@ -24,7 +24,8 @@ class StoreImprimirRequest extends FormRequest
     public function rules()
     {
         return [
-            'Nombre' => 'required',
+            'Nombre'      => 'required',
+            'descripcion' => 'required'
         ];
     }
 }

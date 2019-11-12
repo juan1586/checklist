@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Mail\SendEmail;
 use App\Mail\PendienteChecklistMail;
 use Illuminate\Support\Facades\Mail;
-use App\Services\ValidateMail;
+use App\Services\ValidateChecklist;
 use App\Http\Requests\StoreMailRequest;
 use Exception;
 use Carbon\Carbon;
@@ -64,12 +64,12 @@ class MailController extends Controller
         
     }
     public function refrescar()
-    {  
+    {   
         $date = Carbon::now();
         $hora= $date->format('H:i');
          // Se instancia la clase validate para saber si hay check pendientes 
         // y mandar la cantidad pendiente por email
-        $validatemail = new ValidateMail();
+        $validatemail = new ValidateChecklist();
         
         if(count($validatemail->cantidadChecklist()) > 0 && ($hora == "10:00" || $hora == "16:00" ))
         {

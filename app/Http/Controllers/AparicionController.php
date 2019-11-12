@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\storeAparicionRequest;
+use App\Http\Requests\StoreAparicionRequest;
 use App\Http\Requests\UpdateAparicionRequest;
 use App\Aparicion;
 use App\Frecuencia;
@@ -18,18 +18,14 @@ class AparicionController extends Controller
         $this->middleware('auth');
     }
     
-    public function edit($id)
-    {
-        $aparicion = Aparicion::find($id);
-        return View('apariciones.edit', compact('aparicion'));
-    }
+   
     public function create($id)
     {
         $frecuencia = Frecuencia::find($id);
         return View('apariciones.create', compact('frecuencia'));
     }
 
-    public function store(storeAparicionRequest $request)
+    public function store(StoreAparicionRequest $request)
     {
         try{
             DB::BeginTransaction();
@@ -49,13 +45,19 @@ class AparicionController extends Controller
         }
         
     }
+
+    public function edit($id)
+    {
+        $frecuencia = Aparicion::find($id);
+        return View('apariciones.edit', compact('frecuencia'));
+    }
     public function update(UpdateAparicionRequest $request, $id)
     {
         try{
             DB::BeginTransaction();
             $aparicion = Aparicion::find($id);
-            $aparicion->Nombre = $request->input('aparicion');          
-            $idPregunta = $request->input('frecuencia_id');
+            $aparicion->aparicion = $request->input('aparicion');          
+            $aparicion->frecuencia_id = $request->input('frecuencia_id');
             if($aparicion->save())
             {
                 DB::commit();

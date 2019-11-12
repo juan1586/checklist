@@ -18,7 +18,7 @@
       <th></th>
       <th colspan="3"></th>
       <tbody>
-        <h3>Apariciones</h3><a href="{{ route('apar', $frecuencia->id)}}" class="btn btn-info btn-sm">Crear nueva aparición</a>
+        <h3>Apariciones</h3><a href="{{ route('apar',$frecuencia->id)}}" class="btn btn-info btn-sm">Crear nueva aparición</a>
         @foreach($frecuencia->apariciones as $aparicion)
           <tr>
             <td> 

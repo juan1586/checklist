@@ -1,7 +1,7 @@
 hacer la vista para revisar pruebas de las imagenes
 revisar que el check sea para el user logueado  ->ok
 
-el auditor puede auditar cual tienda? 
+el auditor puede auditar cual tienda? -> la tienda se manda por input ??
 
 los checklist se deben listar para el usuario logueado de acuerdo a los roles ->ok
 
