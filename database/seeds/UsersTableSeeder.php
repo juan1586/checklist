@@ -17,5 +17,11 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('12345678'),
             'id_rol'     =>'1'
         ]);
+        App\User::create([
+            'name'     =>'juan camilo parra',
+            'email'    =>'camilo.parra@spacialized.com',
+            'password' => bcrypt('12345678'),
+            'id_rol'     =>'1'
+        ]);
     }
 }
