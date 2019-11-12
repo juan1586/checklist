@@ -14,5 +14,10 @@ class Frecuencia extends Model
         'Fecha_inicial',
         'Fecha_final'
     ];
+    // Una frecuencia tiene muchas apariciones
+    public function apariciones()
+    {
+        return $this->hasMany(Aparicion::class);
+    }
 
 }

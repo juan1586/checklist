@@ -48,7 +48,7 @@
     }
  </style>
   <?php 
-    header("Refresh:3550; URL='/refrescar'"); 
+    header("Refresh:1800; URL='/refrescar'"); 
    ?>
 </head>
 <body class="hold-transition skin-red-light sidebar-mini">

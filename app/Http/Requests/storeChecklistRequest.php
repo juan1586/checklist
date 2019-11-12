@@ -25,7 +25,6 @@ class storeChecklistRequest extends FormRequest
     {
         return [
             'Nombre' => 'required',
-            'Descripcion' => 'required',
             'id_frecuencia' => 'required',
             'id_usuario' => 'required',
             'tipo_id' => 'required',

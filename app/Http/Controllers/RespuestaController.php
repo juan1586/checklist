@@ -39,16 +39,10 @@ class RespuestaController extends Controller
             // Lista todos los cheklist y compara y si corresponde a cada 
             for($i=0;$i<count($checklists);$i++){
                
-                if($checklists[$i]->frecuencias->id == 1 // Bimestral
-                    && $day->bimonthly($fechaActual) && $day->isHoliday($fechaActual)
-                    && $day->dayNotEnabled($weekday)&& $day->btnActive($checklists[$i]->id)){
-                       
-                        array_push($arrayChecklists, $checklists[$i]);
-                }elseif($checklists[$i]->frecuencias->id == 2 // Semestral
-                    && $day->biannual($fechaActual) && $day->isHoliday($fechaActual)
-                    && $day->dayNotEnabled($weekday)&& $day->btnActive($checklists[$i]->id)){
-
-                      array_push($arrayChecklists, $checklists[$i]);
+                if($day->appear($fechaActual,$checklists[$i]->frecuencias->id) && $day->isHoliday($fechaActual)
+                    && $day->dayNotEnabled($weekday)&& $day->btnActive($checklists[$i]->id)){                       
+                    array_push($arrayChecklists, $checklists[$i]);
+             
                 }elseif(($checklists[$i]->frecuencias->Fecha_inicial <= $fechaActual 
                     && $checklists[$i]->id != 1 // El checklist 1 es solo para auditor
                     && $checklists[$i]->frecuencias->Fecha_final >= $fechaActual) 
@@ -75,7 +69,7 @@ class RespuestaController extends Controller
         $usuarioActualId = auth()->user()->id;
         
         // Esta consulta primero evalua que las preguntas del dia no se hallan contestado aun
-        // y compara la tabla respuestas co la tabla preguntas y si el id pregunta no corresponde con el id pregunata
+        // y compara la tabla respuestas con la tabla preguntas y si el id pregunta no corresponde con el id pregunta
         // de la tabla respuestas la lista claro esta evaluando la fecha
 
         $preguntas = Pregunta::select('id','Nombre','descripcion','id_checklist')

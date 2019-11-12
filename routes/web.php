@@ -25,6 +25,9 @@ Route::resource('auditor','AuditorController');
 Route::resource('pregunta', 'PreguntaController');
 Route::resource('subpregunta','SubPreguntaController');
 Route::resource('imprimir','PreguntaImprimirController');
+Route::resource('aparicion','AparicionController');
+Route::get('apar/{id}','AparicionController@create')->name('apar');
+
 Route::get('imprimirPdf','PdfController@pdf')->name('pdf');
 Route::get('imprimirPdfInfo','PdfController@pdfInfo')->name('pdfInfo');
 Route::post('mail','MailController@send')->name('mail.create');

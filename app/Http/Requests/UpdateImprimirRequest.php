@@ -25,7 +25,6 @@ class UpdateImprimirRequest extends FormRequest
     {
         return [
             'Nombre' => 'required',
-            'descripcion'=>'required'
         ];
     }
 }

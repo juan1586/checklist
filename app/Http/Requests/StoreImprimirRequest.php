@@ -25,7 +25,6 @@ class StoreImprimirRequest extends FormRequest
     {
         return [
             'Nombre' => 'required',
-            'descripcion'=>'required'
         ];
     }
 }

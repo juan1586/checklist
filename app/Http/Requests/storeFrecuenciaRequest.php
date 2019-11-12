@@ -25,7 +25,6 @@ class storeFrecuenciaRequest extends FormRequest
     {
         return [
             'Nombre' => 'required',
-            'Descripcion' => 'required',
         ];
     }
 }

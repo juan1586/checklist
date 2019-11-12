@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Respuesta;
 use App\Pregunta;
+use App\Aparicion;
 use DB;
 class ValidateDay
 {
@@ -42,7 +43,7 @@ class ValidateDay
         $holidays = array(       
             '2019-10-16',  
             '2019-10-17',
-            
+             
      );
         for($i = 0; $i < count($holidays); $i++){
             if($holidays[$i] == $day){
@@ -52,6 +53,19 @@ class ValidateDay
         }
         return false;
     }   
+
+    public function appear($day,$frecuencia)
+    {
+        $apariciones = Aparicion::where('aparicion',$day)
+                                 ->where('frecuencia_id',$frecuencia)->get();
+        if(count( $apariciones) > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+
+    }
    // Retorna verdadero si el día es igual.
    // Frecuencia Semestral.
     public function biannual($day){

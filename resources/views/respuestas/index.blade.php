@@ -5,7 +5,7 @@
 @if($preguntas->total() == 0)
 <div class="container">
   <div class="row">
-    <div class="col-md-12 col-sm-6 offset-md-2">
+    <div class="col-sm-8 offset-sm-2">
       <div class="alert alert-success alert-dismissible text-center">
         <button class="close" data-dismiss="alert" aria-label="close">&times</button>
         <strong>!Ya no hay mas tareas pendientes!</strong>
@@ -16,18 +16,18 @@
 @endif
 <table class="table-striped table-bordered table-condensed table-hover col-sm-12">
   <thead>
-<tr>
-  <th>
-    Tarea
-  </th>
-  <th>
-    Completada
-  </th>
-  <th>
-    Mas informacion
-  </th>
-</tr>
-</thead>
+    <tr>
+      <th>
+        Tarea
+      </th>
+      <th>
+        Completada
+      </th>
+      <th>
+        Mas informacion
+      </th>
+    </tr>
+  </thead>
 @php($con = 0)
 @foreach ($preguntas as $pregunta)
 {!! Form::open(['route' => 'store', 'method' =>'POST','files' => true, 'class'=>'frms']) !!}

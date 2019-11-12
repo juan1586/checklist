@@ -25,7 +25,6 @@ class updateFrecuenciaRequest extends FormRequest
     {
         return [
             'Nombre' => 'required',
-            'Descripcion' => 'required',
         ];
     }
 }
