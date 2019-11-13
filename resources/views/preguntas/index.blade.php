@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-md-11">
                 <div class="card">
-                <a href="/pregunta/create" class="btn btn-info btn-sm ">Crear una nueva pregunta</a> 
+                <a href="/pregunta/create" class="btn btn-info btn-sm ">Crear nueva pregunta</a> 
 
                     <div class="card-header"><h2>Panel de preguntas</h2>  
                        Total Registros: {{ $preguntas->total()}} - Pagina {{ $preguntas->currentPage()}} de {{ $preguntas->lastPage()}}
