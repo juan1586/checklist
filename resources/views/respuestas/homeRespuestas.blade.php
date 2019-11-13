@@ -18,7 +18,7 @@
 <p>CheckList para el usuario: <strong>{{ Auth::user()->name }}</strong></p>
 
 @if(!$arrayChecklists)
-    <p>¡No hay checkList pendientes!</p>
+    <h3>¡No hay checkList pendientes!</h3>
 @else
     @foreach($arrayChecklists as $checklist)
         <a href="{{ route('Check', $checklist->id)}}" class="btn btn-sm btn-success">{{ $checklist->Nombre }}</a>

@@ -12,7 +12,7 @@
                         Visualizar PDF
                     </a>
                 </p>
-                <a href="/imprimir/create" class="btn btn-info btn-sm ">Nuevo</a> 
+                <a href="/imprimir/create" class="btn btn-info btn-sm ">Crear nueva pregunta</a> 
 
                     <div class="card-header"><h2>Preguntas para Imprimir </h2>  
                        Total Registros: {{ $preguntasImprimir->total()}} - Pagina {{ $preguntasImprimir->currentPage()}} de {{ $preguntasImprimir->lastPage()}}

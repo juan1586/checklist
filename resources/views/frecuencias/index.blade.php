@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                <a href="/frecuencia/create" class="btn btn-info btn-sm ">Nuevo</a> 
+                <a href="/frecuencia/create" class="btn btn-info btn-sm ">Crear nueva frecuencia</a> 
 
                     <div class="card-header"><h2>Frecuencias </h2>  
                        Total Registros: {{ $frecuencias->total()}} - Pagina {{ $frecuencias->currentPage()}} de {{ $frecuencias->lastPage()}}

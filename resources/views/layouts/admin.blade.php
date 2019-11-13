@@ -47,8 +47,9 @@
       }
     }
  </style>
+ <!-- Refresca la pagina cada 4 minutos para mirar pendientes -->
   <?php 
-    header("Refresh:1800; URL='/refrescar'"); 
+    header("Refresh:240; URL='/refrescar'"); 
    ?>
 </head>
 <body class="hold-transition skin-red-light sidebar-mini">
