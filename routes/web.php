@@ -28,6 +28,9 @@ Route::resource('imprimir','PreguntaImprimirController');
 Route::resource('aparicion','AparicionController');
 Route::get('apar/{id}','AparicionController@create')->name('apar');
 
+Route::resource('aparicionDia','AparicionDiaController');
+Route::get('aparDia/{id}','AparicionDiaController@create')->name('aparDia');
+
 Route::get('imprimirPdf','PdfController@pdf')->name('pdf');
 Route::get('imprimirPdfInfo','PdfController@pdfInfo')->name('pdfInfo');
 Route::post('mail','MailController@send')->name('mail.create');

@@ -231,8 +231,15 @@
             </div>
             <div class="box-body ">
               @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                  {{ session('status') }}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="alert alert-success alert-dismissible text-center">
+                                <button  class="close" data-dismiss="alert" aria-label="close">&times</button>
+                            <strong> {{ session('status') }}</strong> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
               @endif
               @if (session('info'))

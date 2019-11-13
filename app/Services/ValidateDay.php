@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Respuesta;
 use App\Pregunta;
 use App\Aparicion;
+use App\AparicionDia;
 use DB;
 class ValidateDay
 {
@@ -53,7 +54,7 @@ class ValidateDay
         }
         return false;
     }   
-
+    // Retorna true si la fecha que entra por parametro coincide con la asignada en la tabla y el id del checkList
     public function appear($day,$frecuencia)
     {
         $apariciones = Aparicion::where('aparicion',$day)
@@ -63,9 +64,20 @@ class ValidateDay
         }else{
             return false;
         }
-
-
     }
+
+     // Retorna true si tiene asignado el día de las semana y corresponde con el id de la frecuencia
+     // Recibe el número de dia de la semana, el lunes es el día 1 hasta el 6 que es el sabado
+     public function appearDay($NumDay,$frecuencia)
+     {
+        $aparicioneDias = AparicionDia::where('numero_dia',$NumDay)
+                                ->where('frecuencia_id',$frecuencia)->get();
+        if(count( $aparicioneDias) > 0){
+            return true;
+        }else{
+            return false;
+        }
+     }
    // Retorna verdadero si el día es igual.
    // Frecuencia Semestral.
     public function biannual($day){

@@ -8,12 +8,6 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
                     <h3>Ponte en contacto con el administrador para que te asige un rol!!</h3>
                 </div>
             </div>

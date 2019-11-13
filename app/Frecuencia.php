@@ -9,8 +9,8 @@ class Frecuencia extends Model
     protected $table = 'frecuencias';
     
     protected $fillable = [
-       'Nombre', 
-       'Descripcion',
+        'Nombre', 
+        'Descripcion',
         'Fecha_inicial',
         'Fecha_final'
     ];
@@ -19,5 +19,11 @@ class Frecuencia extends Model
     {
         return $this->hasMany(Aparicion::class);
     }
+
+      // Una frecuencia tiene muchos días
+      public function aparicionDias()
+      {
+          return $this->hasMany(AparicionDia::class);
+      }
 
 }

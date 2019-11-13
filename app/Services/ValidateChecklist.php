@@ -22,7 +22,8 @@ class ValidateChecklist{
             // Lista todos los cheklist y compara y si corresponde a cada 
             for($i=0;$i<count($checklists);$i++){
                
-                if($day->appear($fechaActual,$checklists[$i]->frecuencias->id) && $day->isHoliday($fechaActual)
+                if(($day->appear($fechaActual,$checklists[$i]->frecuencias->id) || $day->appearDay($weekday,$checklists[$i]->frecuencias->id))
+                    && $day->isHoliday($fechaActual)
                     && $day->dayNotEnabled($weekday)&& $day->btnActive($checklists[$i]->id)){                       
                     array_push($arrayChecklists, $checklists[$i]);
              
