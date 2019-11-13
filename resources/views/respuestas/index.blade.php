@@ -8,7 +8,7 @@
     <div class="col-sm-8 offset-sm-2">
       <div class="alert alert-success alert-dismissible text-center">
         <button class="close" data-dismiss="alert" aria-label="close">&times</button>
-        <strong>!Ya no hay mas tareas pendientes!</strong>
+        <strong>!Este checklist ya esta completado!</strong>
       </div>
     </div>
   </div>

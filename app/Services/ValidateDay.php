@@ -85,7 +85,6 @@ class ValidateDay
     // Retorna falso si es sabado o domingo.
     public function dayNotEnabled($day){
         $days = array(       
-            6,  // Sabado.
             7, // Domingo.
             
         );

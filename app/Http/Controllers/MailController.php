@@ -69,14 +69,15 @@ class MailController extends Controller
         $hora= $date->format('H:i');
          // Se instancia la clase validate para saber si hay check pendientes 
         // y mandar la cantidad pendiente por email
-        $validatemail = new ValidateChecklist();
-        
-        if(count($validatemail->cantidadChecklist()) > 0 && ($hora == "10:00" || $hora == "16:00" ))
+        $pendientesChecklist = new ValidateChecklist();
+        // Esta linea decuelve la cantidad de checklist pendientes
+        $checkPendientes = count($pendientesChecklist->cantidadChecklist());
+        if(count($pendientesChecklist->cantidadChecklist()) > 0 && (($hora >= "10:00" && $hora <= "10:06") || ($hora >= "16:00" && $hora <= "16:06" )))
         {
-            $checksPendientes = $validatemail->cantidadChecklist(); // Funcion que me hace la consulta
+            $checksPendientes = $pendientesChecklist->cantidadChecklist(); // Funcion que me hace la consulta
             $email = auth()->user()->email;
             Mail::to($email)->send(new PendienteChecklistMail($checksPendientes));
-            return redirect('/indexHome')->with('info', 'Correo enviado con refresh');
+            return redirect('/indexHome')->with('info', 'Correo enviado con los checklist pendientes');
         }else{
             return redirect('/indexHome');
         }
