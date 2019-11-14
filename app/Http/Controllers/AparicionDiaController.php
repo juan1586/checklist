@@ -28,6 +28,14 @@ class AparicionDiaController extends Controller
 
     public function store(StoreAparicionDiaRequest $request)
     {
+        // Para validar que el día ya exista y no se repita
+        $dia = $request->input('numero_dia');
+        $frecuencia_id = $request->input('frecuencia_id');
+        $existe = AparicionDia::where('numero_dia',$dia)->where('frecuencia_id',$frecuencia_id)->get();
+        
+        if(count($existe) > 0){
+            return back()->with('error', 'Este día ya existe');
+        }
         try{
             DB::BeginTransaction();
             $aparicionDia = new AparicionDia();

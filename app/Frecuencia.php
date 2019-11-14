@@ -27,3 +27,4 @@ class Frecuencia extends Model
       }
 
 }
+ 

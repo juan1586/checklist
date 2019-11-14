@@ -62,7 +62,6 @@
               Sabado          
             @endif
             </td>
-            <td><a href="{{ route('aparicionDia.edit', $aparicionDia->id)}}">-Editar</a></td>
             <td> 
               {!! Form::open(['route' => ['aparicionDia.destroy',$aparicionDia->id],
                 'method'=> 'DELETE']) !!}

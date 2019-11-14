@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','id_rol'
+        'name', 'email', 'password','id_rol','parent_id'
     ];
 
     /**
@@ -29,5 +29,13 @@ class User extends Authenticatable
 
     public function roles(){//Un user tiene un rol
         return $this->belongsTo(Rol::class,'id_rol');
+    }
+    // De un usuario se accede al usuario padre que lo contiene
+    public function parent(){
+        return $this->belongsTo(User::class);
+    }
+    // Los usuarios que un usuario continene, en este caso un coordinador zona tiene anfitriones
+    public function services(){
+        return $this->hasMany(User::class,'parent_id');
     }
 }

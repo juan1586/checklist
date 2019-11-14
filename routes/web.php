@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('user', 'UserController');
+
 Route::resource('frecuencia', 'FrecuenciaController');
 Route::resource('checklist', 'CheckListController');
 Route::resource('auditor','AuditorController');
@@ -46,3 +47,4 @@ Route::get('indexHome','RespuestaController@indexHome')->name('indexHome');
 Route::post('store','RespuestaController@store')->name('store');
 
 Route::get('reporte','ReportesController@index')->name('reporte');
+Route::get('reporteTienda','ReportesController@reporteTiendas')->name('reporteTienda');

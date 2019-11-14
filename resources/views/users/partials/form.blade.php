@@ -10,4 +10,8 @@
     <label>Rol</label>
     {!! Form::select('id_rol', $roles, null, ['class' => 'form-control']) !!}
 </div>
+<div class="form-group">
+    <label>Pertenece a</label>
+    {!! Form::select('parent_id', $users, null, ['class' => 'form-control']) !!}
+</div>
 

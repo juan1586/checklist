@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h3>
+    <h2>
         Reportes tiendas
 
         {!! Form::open(['route' => 'reporte','method' => 'GET', 'class'=>'form-inline pull-right']) !!}
         {!! Form::select('tienda', $tiendas, null, ['class' => 'form-control','placeholder' => 'Tienda']) !!}
         {!! Form::date('fecha_desde', null, ['class' => 'form-control', 'placeholder' => 'Desde']) !!}
-        {!! Form::date('fecha_hasta', null, ['class' => 'form-control', 'placeholder' => 'Hasta']) !!}
+        {!! Form::date('fecha_hasta',null, ['class' => 'form-control', 'placeholder' => 'Hasta']) !!}
             <div class="form-group">
                 <button type="submit" class="btn btn-default">
                     <span class="glyphicon glyphicon-search "></span>

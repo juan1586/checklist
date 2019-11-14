@@ -15,7 +15,7 @@
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Rol</th>
-                            <th colspan="2">&nbsp;</th>
+                            <th colspan="3">&nbsp;</th>
                             <tbody>
                                 @foreach ($users as $user)
                                     <tr>
@@ -25,14 +25,14 @@
                                         <td>{{$user->roles->Nombre}}</td>
                                         <td width="10px">
                                             <a href=" {{ route('user.show', $user->id)}}" 
-                                                class="btn btn-sm  btn-danger">Eliminar
+                                                class="btn btn-sm  btn-info">Ver
                                             </a>
                                         </td>
                                         <td width="10px">
                                             <a href=" {{ route('user.edit', $user->id)}}" 
                                                 class="btn btn-sm  btn-success">Editar
                                             </a>
-                                        </td>                                      
+                                        </td>                                     
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -16,7 +16,7 @@ cuando saco las preguntas email solo valido el no de las de auditor falta valida
 algo
 
 
-cambiar en el servidor AuditorController el id del checklist
+cambiar en el servidor AuditorController el id del checklist ->ok
 
 
 en checklist retailer hay q poner q tienda se audita

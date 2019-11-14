@@ -31,8 +31,24 @@ class UserController extends Controller
 
     public function edit(User $user){
         $roles = Rol::pluck('Nombre','Id');
-        return View('users.edit', compact('user','roles'));
+        $users = User::where('id_rol',2)->pluck('name','id');
+
+        return View('users.edit', compact('user','roles','users'));
     }
+    
+    public function update(Request $request, User $user)
+    {
+        try{
+            $user->update($request->all());
+            return redirect()->route('user.edit',$user->id)
+            ->with('info','Actualizado con exito');
+        }catch(Exception $e){
+            $msg = $e->getMessage();
+            return back()->with('error', 'Error al editar '.$msg);
+       }
+       
+    }
+    
     public function destroy(User $user)
     {
         try{
@@ -44,19 +60,5 @@ class UserController extends Controller
             return back()->with('error', 'Error al eliminar '.$msg);
         }        
     }
-
-    public function update(Request $request, User $user)
-    {
-       try{
-            $user->update($request->all());
-            return redirect()->route('user.edit',$user->id)
-                ->with('info','Actualizado con exito');
-       }catch(Exception $e){
-            $msg = $e->getMessage();
-            return back()->with('error', 'Error al editar '.$msg);
-       }
-        
-    }
-
 }
  

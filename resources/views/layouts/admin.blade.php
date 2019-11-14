@@ -176,10 +176,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-           
           
-          
-            <li><a href="/reporte"><i class="fa fa-circle-o"></i>Panel Reportes</a></li>
+          <li><a href="/reporte"><i class="fa fa-circle-o"></i>Reportes por fecha</a></li>
+          <li><a href="/reporteTienda"><i class="fa fa-circle-o"></i>Tiendas</a></li>
 
            
 
@@ -271,7 +270,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
-                            <div class="alert alert-danger alert-dismissable ">
+                            <div class="alert alert-danger alert-dismissable text-center ">
                             <button  class="close" data-dismiss="alert" aria-label="close">&times</button>
 
                             <ul class="list-unstyled">

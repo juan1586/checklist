@@ -24,7 +24,7 @@ class Respuesta extends Model
     ];
 
     public function pregunta()
-    {//Una pregunta pertenece a un cheklist
+    {//Una pregunta pertenece a una respuesta
         return $this->belongsTo(Pregunta::class,'id_pregunta');
     }
 

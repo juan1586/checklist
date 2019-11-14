@@ -57,9 +57,8 @@ class RespuestaController extends Controller
                 ->whereRaw('respuestas.fecha=(select CURDATE())')
                 ->where('id_usuario', auth()->user()->id);
         })->where('id_checklist',$id)->paginate(40);
-     
+ 
         return View('respuestas.index', compact('preguntas'));
-
     }
 
     public function store(Request $request)
