@@ -15,7 +15,7 @@
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Rol</th>
-                            <th colspan="3">&nbsp;</th>
+                            <th colspan="2">&nbsp;</th>
                             <tbody>
                                 @foreach ($users as $user)
                                     <tr>
