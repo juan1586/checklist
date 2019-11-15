@@ -20,3 +20,14 @@ cambiar en el servidor AuditorController el id del checklist ->ok
 
 
 en checklist retailer hay q poner q tienda se audita
+
+No enviar correo al coordinador operaciones
+
+Ojo la lista de checklist se debe validar con los roles no con el id usuario, por si hay ,mas de un
+coordinador operaciones ->ok
+
+seguir validando permisos de las funcionalidades
+
+Validar o preguntar si los cZona pertenecen y se relacionan con cOperaciones
+
+se valida lista de pertenencias a la hora de poner papá a los anf y cZona

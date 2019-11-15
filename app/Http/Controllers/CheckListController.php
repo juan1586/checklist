@@ -21,7 +21,13 @@ class CheckListController extends Controller
     }
     public function index()
     {
-        $checklists =  Checklist::orderBy('id','desc')->paginate(10);
+        if(auth()->user()->roles->id != 1){
+            
+            $checklists =  Checklist::where('id_usuario',auth()->user()->id)->orderBy('id','desc')->paginate(10);
+        }else{
+            $checklists =  Checklist::orderBy('id','desc')->paginate(10);
+
+        }
 
 
         return View('checklists.index', compact('checklists'));
@@ -51,6 +57,7 @@ class CheckListController extends Controller
             $checklist->id_frecuencia = $request->input('id_frecuencia');
             $checklist->id_usuario = $request->input('id_usuario');
             $checklist->tipo_id = $request->input('tipo_id');
+            $checklist->rol_id = auth()->user()->roles->id;
             if($checklist->save())
             {
                 DB::commit();

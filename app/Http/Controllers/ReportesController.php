@@ -34,7 +34,7 @@ class ReportesController extends Controller
 
     public function reporteTiendas(Request $request)
     { 
-        $users = User::pluck('name','id');
+        $users = User::where('id_rol','!=',1)->pluck('name','id');
         $id = $request->input('tienda_id');
         $user = User::where('id',$id)->pluck('name');
         

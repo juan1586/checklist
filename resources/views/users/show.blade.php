@@ -13,10 +13,13 @@
                     </div>
                     <div>
                     <hr/>
-                    <h3>Tiendas a cargo</h3>
-                    @foreach($user->services as $service)
-                        *{{ $service->name }}
-                    @endforeach
+                    <!-- Solo los coordinadores tiene tiendas a cargo -->
+                    @if($user->roles->id != 3)
+                        <h3>Tiendas a cargo</h3>
+                        @foreach($user->services as $service)
+                            *{{ $service->name }}
+                        @endforeach
+                    @endif
                     </div>
                     <div>
                         {!! Form::open(['route' => ['user.destroy',$user->id],

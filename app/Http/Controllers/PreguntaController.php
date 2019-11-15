@@ -21,15 +21,24 @@ class PreguntaController extends Controller
     }
     public function index()
     {
-        $preguntas = Pregunta::orderBy('id','desc')->paginate(10);
+        if(auth()->user()->roles->id != 1){
+            $preguntas = Pregunta::where('user_id',auth()->user()->id)->orderBy('id','desc')->paginate(5);
+        }else{            
+            $preguntas = Pregunta::orderBy('id','desc')->paginate(5);
+        }
        
         return View('preguntas.index',compact('preguntas'));
     }
  
     public function create()
     {
-           
-        $checklists = Checklist::pluck('Nombre','id');
+        if(auth()->user()->roles->id != 1){
+            
+            $checklists =  Checklist::where('id_usuario',auth()->user()->id)->pluck('Nombre','id');
+        }else{
+            $checklists =  Checklist::orderBy('id','desc')->pluck('Nombre','id');
+
+        }
         return View('preguntas.create', compact('checklists'));
     }
 
@@ -42,6 +51,7 @@ class PreguntaController extends Controller
             $pregunta->Nombre = $request->input('Nombre');     
             $pregunta->descripcion = $request->input('descripcion');       
             $pregunta->id_checklist = $request->input('id_checklist');
+            $pregunta->user_id = auth()->user()->id;
           
             if($pregunta->save())
             {

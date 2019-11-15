@@ -31,7 +31,11 @@ class UserController extends Controller
 
     public function edit(User $user){
         $roles = Rol::pluck('Nombre','Id');
-        $users = User::where('id_rol',2)->pluck('name','id');
+        if($user->roles->id == 2){
+            $users = User::where('id_rol',1)->pluck('name','id');
+        }elseif($user->roles->id == 3){
+            $users = User::where('id_rol',2)->pluck('name','id');
+        }
 
         return View('users.edit', compact('user','roles','users'));
     }

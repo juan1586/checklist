@@ -29,7 +29,7 @@ class AddParentIdToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('checklists', function (Blueprint $table){
+        Schema::table('users', function (Blueprint $table){
             $table->dropForeign(['parent_id']); 
             $table->dropColumn('parent_id');    
         });
