@@ -97,7 +97,7 @@
               <li class="user-footer">
                 
                 <div class="pull-right">
-                  <a class="dropdown-item" href="{{ route('logout') }}"
+                  <a class="dropdown-item" style="color:#FF0000" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                    {{ __('Cerrar Sesión') }}
