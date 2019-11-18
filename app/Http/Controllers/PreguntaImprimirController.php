@@ -18,7 +18,7 @@ class PreguntaImprimirController extends Controller
 
     public function index()
     {
-        $preguntasImprimir = PreguntaImprimir::paginate(50);
+        $preguntasImprimir = PreguntaImprimir::where('user_id',auth()->user()->id)->paginate(50);
         return View('imprimir.index', compact('preguntasImprimir'));
 
     }
@@ -35,6 +35,7 @@ class PreguntaImprimirController extends Controller
             $preguntaImprimir = new PreguntaImprimir();
             $preguntaImprimir->Nombre = $request->input('Nombre');
             $preguntaImprimir->descripcion = $request->input('descripcion');
+            $preguntaImprimir->user_id = auth()->user()->id;
             if($preguntaImprimir->save()){
                 DB::commit();
                 return redirect()->route('imprimir.index')->with('info','creado con exito'); 

@@ -22,7 +22,6 @@ class CheckListController extends Controller
     public function index()
     {
         if(auth()->user()->roles->id != 1){
-            
             $checklists =  Checklist::where('id_usuario',auth()->user()->id)->orderBy('id','desc')->paginate(10);
         }else{
             $checklists =  Checklist::orderBy('id','desc')->paginate(10);

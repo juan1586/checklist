@@ -31,11 +31,13 @@ class UserController extends Controller
 
     public function edit(User $user){
         $roles = Rol::pluck('Nombre','Id');
-        if($user->roles->id == 2){
-            $users = User::where('id_rol',1)->pluck('name','id');
-        }elseif($user->roles->id == 3){
+
+        // Se manda a la vista los coordinadores de zona a los que pertenecen los anfitrines
+        // Los coordinadores son id_rol 2
+        if($user->roles->id == 3){
             $users = User::where('id_rol',2)->pluck('name','id');
         }else{
+            // Si no mandamos la consulta vacia para que no de error en la vista
             $users = User::where('id_rol',-1)->pluck('name','id');
         }
 

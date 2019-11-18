@@ -34,7 +34,7 @@ class PreguntaController extends Controller
     {
         if(auth()->user()->roles->id != 1){
             
-            $checklists =  Checklist::where('id_usuario',auth()->user()->id)->pluck('Nombre','id');
+            $checklists =  Checklist::where('id_usuario',auth()->user()->id)->orWhere('id',1)->pluck('Nombre','id');
         }else{
             $checklists =  Checklist::orderBy('id','desc')->pluck('Nombre','id');
 
