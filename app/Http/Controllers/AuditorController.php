@@ -20,8 +20,14 @@ class AuditorController extends Controller
     }
     public function index()
     {
-        // Trae las preguntas cuando no esten respondidas, valida preguntas con respuestas
-        $preguntas = Pregunta::select('id','Nombre','descripcion','id_checklist')
+        // Array global para asignarle los checklist segun condiciones
+        $preguntas = array();
+
+        //Trae las precuntas creadas por el coordinador zona cuando no esten respondidas,
+        // valida preguntas con respuestas, solo trae las del coordinador de 
+        // zona correspondiente
+        
+        $preguntasCZ = Pregunta::select('id','Nombre','descripcion','id_checklist')
         ->whereNotExists(function($query)
         {
             $query->select(DB::raw(1))
@@ -30,16 +36,40 @@ class AuditorController extends Controller
                 ->whereRaw('respuestas.fecha=(select CURDATE())')
                 ->where('id_usuario', auth()->user()->id)
                 ->orderBy('id','desc');
-        })->where('id_checklist',1)->paginate(40); // El id 1 pertenece al auditor
-         // El paginate es solo para operar en la vista con el total
+        })->where('id_checklist',1)->where('user_id',auth()->user()->id) // El id 1 pertenece al auditor
+        ->orderBy('id','DESC')->get(); 
+
+        // Agrega las preguntas preguntasCZ al nuevo array preguntas
+        for($i=0;$i<count($preguntasCZ);$i++){
+        array_push($preguntas, $preguntasCZ [$i]); 
+        }
+         //Trae las precuntas creadas por el coordinador operaciones cuando no esten respondidas,
+        // valida preguntas con respuestas, solo trae las del coordinador de 
+        // zona correspondiente
+        $preguntasCO = Pregunta::select('id','Nombre','descripcion','id_checklist')
+        ->whereNotExists(function($query)
+        {
+            $query->select(DB::raw(1))
+                ->from('respuestas')
+                ->whereRaw('preguntas.id = respuestas.id_pregunta')
+                ->whereRaw('respuestas.fecha=(select CURDATE())')
+                ->where('id_usuario', auth()->user()->id)
+                ->orderBy('id','desc');
+        })->where('id_checklist',1)->where('user_id',1) // El id 1 pertenece al auditor
+        ->orderBy('id','DESC')->get();    
+        
+       // Agrega las preguntas preguntasCO al nuevo array preguntas
+        for($i=0;$i<count($preguntasCO);$i++){
+            array_push($preguntas, $preguntasCO[$i]); 
+        }
         // Si hay preguntas por responder las manda a la vista.
         if(count($preguntas)>0 ){
-            
+            $NumeroPreguntas=count($preguntas);
             return View('auditor.index', compact('preguntas'));
         }else{
             // Si no hay mas preguntas hace un redirect hacia MailController para enviar
             // correo con las preguntas que se respondieron con no.
-            return redirect('/mail')->with('info', 'No tienes mas tareas');
+            return redirect('/mail')->with('info', 'No hay mas preguntas');
         }
     
     }

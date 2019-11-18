@@ -10,7 +10,7 @@
     <label>Rol</label>
     {!! Form::select('id_rol', $roles, null, ['class' => 'form-control']) !!}
 </div>
-@if($user->roles->id != 1)
+@if($user->roles->id == 3)
 <div class="form-group">
     <label>Pertenece a</label>
     {!! Form::select('parent_id', $users, null, ['class' => 'form-control','placeholder'=>'Coordinador al que pertenece']) !!}
