@@ -1,4 +1,10 @@
 @extends('layouts.admin')
+<script src="{{asset('js/app.js') }}"></script>
+
+<script>
+    Push.Permission.has();
+    Push.create('Hola Bienvenido a la checklist');
+</script>
 
 @section('content')
 <h2>CheckList</h2>          
