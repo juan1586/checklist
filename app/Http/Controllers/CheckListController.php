@@ -74,16 +74,24 @@ class CheckListController extends Controller
 
     public function edit($id)
     {
-        $usuarios = User::where('id_rol',auth()->user()->id)->pluck('name','id'); 
+        $frecuencias = Frecuencia::pluck('Nombre','id');
+        $checklist = Checklist::find($id);
+        //Esto garantiza que cuando se elimine un usuario se reasignen los checklist creados por el
+        if($checklist->id_usuario != NUll){
+            $usuarios = User::where('id_rol',auth()->user()->id)->pluck('name','id'); 
+        }else{
+            $usuariosCheck = User::where('id_rol',2)->pluck('name','id'); 
+        }
+        
+
         if(auth()->user()->roles->id == 1){
             $tipos = Tipo::pluck('Nombre','id');
         }else{
             $tipos = Tipo::where('id',2)->pluck('Nombre','id');
         }
        
-        $frecuencias = Frecuencia::pluck('Nombre','id');
-        $checklist = Checklist::find($id);
-        return View('checklists.edit', compact('checklist','usuarios','frecuencias','tipos'));
+        
+        return View('checklists.edit', compact('checklist','usuarios','frecuencias','tipos','usuariosCheck'));
         
     }
 

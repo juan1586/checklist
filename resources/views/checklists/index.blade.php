@@ -28,9 +28,24 @@
                                         <td>{{$checklist->id}}</td>
                                         <td>{{$checklist->Nombre}}</td>
                                         <td>{{$checklist->Descripcion}}</td>
+                                        <!-- Estos if garantizan que cuando se borre una dependencia no se caiga la pagina -->
+                                        @if($checklist->users != Null)
                                         <td>{{$checklist->users->name}}</td>
+                                        @else
+                                        <td>N/A</td>
+                                        @endif
+
+                                        @if($checklist->frecuencias != Null)
                                         <td>{{$checklist->frecuencias->Nombre}}</td>
+                                        @else
+                                        <td>N/A</td>
+                                        @endif
+
+                                        @if($checklist->tipo != Null)
                                         <td>{{$checklist->tipo->Nombre}}</td>
+                                        @else
+                                        <td>N/A</td>
+                                        @endif
                                        
                                         <td width="10px">
                                             <a href=" {{ route('checklist.show', $checklist->id)}}" 
@@ -47,7 +62,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="myCenter">
+                        <div class="myCenter"> 
                         {{ $checklists->render() }} {{--paginacion--}}
                        </div>
                     </div>
