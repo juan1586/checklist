@@ -14,10 +14,10 @@
                     <div>
                     <hr/>
                     <!-- Solo los coordinadores tiene tiendas a cargo -->
-                    @if($user->roles->id != 3)
+                    @if($user->roles->id == 2)
                         <h3>Tiendas a cargo</h3>
-                        @foreach($user->services as $service)
-                            *{{ $service->name }}
+                        @foreach($user->anfitriones as $anfitrion)
+                            *{{ $anfitrion->name }}
                         @endforeach
                     @endif
                     </div>
