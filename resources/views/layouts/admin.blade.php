@@ -166,15 +166,12 @@
             <li><a href="/auditor"><i class="fa fa-circle-o"></i>Checklist Retailers</a></li>
             <li><a href="/imprimir"><i class="fa fa-circle-o"></i>Imprimir Preguntas</a></li>
             @endif
-            @if(Auth::user()->id_rol == 1 )
-
-            
-            @endif
+          
             @if(Auth::user()->id_rol == 1 || Auth::user()->id_rol == 2 || Auth::user()->id_rol == 3)
             <li><a href="/indexHome"><i class="fa fa-circle-o"></i>CheckList Pendientes </a></li>
             @endif
           </ul>
-          @if(Auth::user()->id_rol == 1 )
+          @if(Auth::user()->id_rol == 1 || Auth::user()->id_rol == 2 )
           <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>Informes</span>
@@ -183,12 +180,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-          
           <li><a href="/reporte"><i class="fa fa-circle-o"></i>Reportes por fecha</a></li>
           <li><a href="/reporteTienda"><i class="fa fa-circle-o"></i>Tiendas</a></li>
-
-           
-
           </ul>
           @endif
           @if(Auth::user()->id_rol == 1 )

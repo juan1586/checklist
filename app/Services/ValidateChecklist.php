@@ -24,20 +24,18 @@ class ValidateChecklist{
                 array_push($checklists, $parentTipoDos[$i]);
             }
             // Valida el rol anfitrion y luego valida que los checklist del administrador y lo agrega al nuevo arreglo  
-            if(auth()->user()->roles->id == 3){         
-                // Creado por el coordinador operaciones y aplica anfitrion            
-                $OperacionesTipoDos = Checklist::where('rol_id',1)->where('tipo_id',2)->get();
-                for($i=0;$i<count($OperacionesTipoDos);$i++){
-                    array_push($checklists, $OperacionesTipoDos[$i]); 
-                }
+                    
+            // Creado por el coordinador operaciones y aplica anfitrion            
+            $OperacionesTipoDos = Checklist::where('rol_id',1)->where('tipo_id',2)->get();
+            for($i=0;$i<count($OperacionesTipoDos);$i++){
+                array_push($checklists, $OperacionesTipoDos[$i]); 
             }
-            if(auth()->user()->roles->id == 3){  
-                // Creado por el coordinador operaciones y aplica anfitrion y coordinador zona                 
-                $OperacionesTipoTres = Checklist::where('rol_id',1)->where('tipo_id',3)->get();
-                for($i=0;$i<count($OperacionesTipoTres);$i++){
-                    array_push($checklists, $OperacionesTipoTres[$i]); 
-                }
-            }
+             // Creado por el coordinador operaciones y aplica anfitrion y CZ           
+             $OperacionesTipoTres = Checklist::where('rol_id',1)->where('tipo_id',3)->get();
+             for($i=0;$i<count($OperacionesTipoTres);$i++){
+                 array_push($checklists, $OperacionesTipoTres[$i]); 
+             }
+            
 
         }else{
             $checklists = Checklist::where('id_usuario',-1)->get(); // Esto es solo si la propiedad parent no esta definida

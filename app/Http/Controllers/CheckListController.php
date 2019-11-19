@@ -106,6 +106,7 @@ class CheckListController extends Controller
             $checklist->id_frecuencia = $request->input('id_frecuencia');
             $checklist->id_usuario = $request->input('id_usuario');
             $checklist->tipo_id = $request->input('tipo_id');
+            $checklist->rol_id = auth()->user()->roles->id;
             if($checklist->save())
             {
                 DB::commit();

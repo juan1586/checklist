@@ -14,6 +14,7 @@ class PreguntaImprimirController extends Controller
     {
         // Aplica si es coordinador zona o admin zoneC
         $this->middleware('auth');
+        $this->middleware('zoneC');
     }
 
     public function index()
