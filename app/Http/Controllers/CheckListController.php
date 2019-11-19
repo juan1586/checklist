@@ -43,7 +43,7 @@ class CheckListController extends Controller
         
                
         $frecuencias = Frecuencia::pluck('Nombre','id');
-        return View('checklists.create', compact('usuarios','frecuencias','tipos'));
+        return View('checklists.create', compact('usuarios','frecuencias','tipos','checklist'));
     }
 
     public function store(storeChecklistRequest $request ,Checklist $checklist)

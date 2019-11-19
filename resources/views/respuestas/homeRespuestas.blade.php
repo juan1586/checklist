@@ -1,11 +1,4 @@
 @extends('layouts.admin')
-<script src="{{asset('js/app.js') }}"></script>
-
-<script>
-    Push.Permission.has();
-    Push.create('Hola Bienvenido a la checklist');
-</script>
-
 @section('content')
 <h2>CheckList</h2>          
 
@@ -31,4 +24,13 @@
     @endforeach
 @endif
 
+@if($checkPendientes > 0)
+<script src="{{asset('js/app.js') }}"></script>
+<script>
+
+
+    Push.Permission.has();
+    Push.create('Tienes algunos checklist por responder!! ');
+</script> 
+@endif
 @endsection
