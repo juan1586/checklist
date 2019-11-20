@@ -94,6 +94,7 @@ class ReportesController extends Controller
         }else{
             $users = User::where('id_rol','!=',1)->pluck('name','id');
         }
+        
        
         // Variable para el lava charts para mostrar el usuario
         $user = User::where('id',$id)->pluck('name');
@@ -150,7 +151,7 @@ class ReportesController extends Controller
             'title' => 'Tienda: '.$usuario." \n Preguntas respondidas ".$respondidas,
         ]);    
         $lava->DonutChart('consulta2', $preguntasYrespuestas, [
-            'title' => 'Checklist: '.$msgCheck
+            'title' => 'Checklist: '.$msgCheck." \n fecha ".$request->input('fecha_desde')
         ]);
     
         return view('reportes.reporteTiendas', compact('lava','users','checklist'));

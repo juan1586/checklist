@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        Reportes tiendas 
+        <h4>Reportes tiendas</h4>
         
         {!! Form::model(Request::all(),['route' => 'reporteTienda','method' => 'GET', 'class'=>'form-inline pull-right','name'=>'frms']) !!}
             <div class="form-group">
@@ -23,7 +23,6 @@
     <br>
     <br>
     <br>
-    <hr/>
   
     <div id="chart-div">
     </div>

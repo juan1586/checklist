@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
 @section('content') 
+    <a href="" class="btn btn-success pull-right">Exportar a PDF</a>
+    <br>
     <div>
-        Reportes tiendas
+        <h4>Reportes tiendas</h4>
 
         {!! Form::model(Request::all(),['route' => 'reporte','method' => 'GET', 'class'=>'form-inline pull-right','name'=>'frms']) !!}
             <div class="form-group">
@@ -22,7 +24,6 @@
     </div>
     <br>
     <br>
-    <hr/>
 
     <div class="card-body table-responsive ">
         <table class="table table-striped   ">
