@@ -16,7 +16,7 @@ class ReportesController extends Controller
         $this->middleware('auth');
         $this->middleware('zoneC');
     }
-  
+   // Este es reportes tiedas por fecha
     public function index(Request $request)
     {
         // Se inicializa variable
@@ -42,7 +42,7 @@ class ReportesController extends Controller
             }else{            
                 // Si 
                 $checklist = Checklist::where('rol_id',1)->where('id','!=',1)
-                ->where('tipo_id',[1,3])->pluck('Nombre','id');
+                ->where('tipo_id',1)->orWhere('tipo_id',3)->pluck('Nombre','id');
             }
         }
          // Usuarios o tiendas que van a la vista al select
@@ -52,9 +52,18 @@ class ReportesController extends Controller
         }else{
             $users = User::where('id_rol','!=',1)->pluck('name','id');
         }
-        $reportes = Respuesta::where('id_checklist',$check)
-        ->whereRaw('fecha >="'.$request->input('fecha_desde').'" and fecha <="'.$request->input('fecha_hasta').'"')
-        ->paginate(10);
+
+        if($check != Null ){
+            $reportes = Respuesta::where('id_checklist',$check)
+            ->whereRaw('fecha >="'.$request->input('fecha_desde').'" and fecha <="'.$request->input('fecha_hasta').'"')
+            ->paginate(10);
+        }elseif(auth()->user()->roles->id != 1){ // DO pendiente filtro para los CZ
+            $reportes = Respuesta::where('id_usuario',auth()->user()->id)
+            ->where('id_checklist','!=',1)->paginate(10);
+        }else{
+            $reportes = Respuesta::where('id_checklist','!=',1)->paginate(10);
+        }
+      
         return View('reportes.index', compact('checklist','reportes','users'));
     }
 

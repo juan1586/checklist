@@ -51,3 +51,5 @@ Route::get('reporte/{id}','ReportesController@show')->name('reporte.show');
 Route::get('reporteTienda','ReportesController@reporteTiendas')->name('reporteTienda');
 Route::get('retailer','ReportesController@retailerIndex')->name('retailer');
 Route::get('retailer/{id}','ReportesController@retailerShow')->name('retailer.show');
+
+Route::get('export','ExportExcelController@exportRespuestas')->name('export.respuesta');

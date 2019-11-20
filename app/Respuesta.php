@@ -27,6 +27,11 @@ class Respuesta extends Model
     {//Una pregunta pertenece a una respuesta
         return $this->belongsTo(Pregunta::class,'id_pregunta');
     }
+    
+    public function user()
+    {//Una pregunta pertenece a una respuesta
+        return $this->belongsTo(User::class,'id_usuario');
+    }
 
     
 }
