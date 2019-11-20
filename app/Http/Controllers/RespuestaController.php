@@ -65,6 +65,16 @@ class RespuestaController extends Controller
     {
         try
         {
+            $imagen=Null;
+            // Si viene imagen la asigna con la ruta de la uvicación, si no queda vacia
+            if($request->hasFile('imagen'))
+            {
+                $file = $request->file('imagen');
+                //concatena el nombre con el tiempo y asi se vuelve un registro unico.
+                $imagen = time().$file->getClientOriginalName();
+                $file->move(public_path().'/images/', $imagen);
+                
+            }
             $date = Carbon::now();
             $hora = $date->format('h:i:s');
             $fecha = $date->format('Y-m-d');
@@ -85,7 +95,7 @@ class RespuestaController extends Controller
             // }
             DB::BeginTransaction();
             $respuesta = new Respuesta();
-
+           
             // Validación de las sub preguntas
             if($request->input('subRespuesta') != null){
                 if(count($request->input('subRespuesta')) == $request->input('contSub')){
@@ -103,6 +113,7 @@ class RespuestaController extends Controller
             
             $respuesta->hora = $hora;
             $respuesta->fecha = $fecha;
+            $respuesta->imagen=$imagen;
             $respuesta->id_usuario = $request->input('id_usuario'); 
             $respuesta->id_checklist = $request->input('id_checklist');
         

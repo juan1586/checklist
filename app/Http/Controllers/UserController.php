@@ -20,7 +20,7 @@ class UserController extends Controller
     {
        /* $date = Carbon::now();//Fecha con carbon
         dd($date->format('l jS \\ - F Y h:i:s A'));*/
-        $users= User::paginate(5);
+        $users= User::orderBy('id','DESC')->paginate(5);
         return view('users.index',compact('users'));
     }
 

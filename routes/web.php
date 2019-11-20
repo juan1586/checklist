@@ -47,4 +47,5 @@ Route::get('indexHome','RespuestaController@indexHome')->name('indexHome');
 Route::post('store','RespuestaController@store')->name('store');
 
 Route::get('reporte','ReportesController@index')->name('reporte');
+Route::get('reporte/{id}','ReportesController@show')->name('reporte.show');
 Route::get('reporteTienda','ReportesController@reporteTiendas')->name('reporteTienda');

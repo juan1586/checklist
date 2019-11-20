@@ -21,6 +21,9 @@
         Tarea
       </th>
       <th>
+        Prueba
+      </th>
+      <th>
         Completada
       </th>
       <th>
@@ -41,6 +44,9 @@
   <tr>
     <td>
     {!! Form::label('Nombre',$pregunta->Nombre, ['class' => 'form-check-label','for'=>'check'.$con]) !!}
+    </td>
+    <td>
+    {!! Form::file('imagen')!!}
     </td>
     <td>
     {{Form::checkbox('respuesta',null,null,['onclick'=>'marcado("'.$con.'")','class' => 'form-check-input', 'id' => 'Nombre']) }}
