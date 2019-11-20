@@ -180,8 +180,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-          <li><a href="/reporte"><i class="fa fa-circle-o"></i>Reportes por fecha</a></li>
-          <li><a href="/reporteTienda"><i class="fa fa-circle-o"></i>Tiendas</a></li>
+          <li><a href="/reporte"><i class="fa fa-circle-o"></i>Reportes Tiendas por fecha</a></li>
+          <li><a href="/reporteTienda"><i class="fa fa-circle-o"></i>Reportes Tiendas</a></li>
+          <li><a href="/retailer"><i class="fa fa-circle-o"></i>Reportes Retailers</a></li>
           </ul>
           @endif
           @if(Auth::user()->id_rol == 1 )

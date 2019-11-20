@@ -16,7 +16,7 @@ class ReportesController extends Controller
         $this->middleware('auth');
         $this->middleware('zoneC');
     }
-
+  
     public function index(Request $request)
     {
         // Se inicializa variable
@@ -53,8 +53,7 @@ class ReportesController extends Controller
             $users = User::where('id_rol','!=',1)->pluck('name','id');
         }
         $reportes = Respuesta::where('id_checklist',$check)
-        ->where('fecha','>=',$desde)
-        ->where('fecha','<=',$hasta)
+        ->whereRaw('fecha >="'.$request->input('fecha_desde').'" and fecha <="'.$request->input('fecha_hasta').'"')
         ->paginate(10);
         return View('reportes.index', compact('checklist','reportes','users'));
     }
@@ -161,5 +160,32 @@ class ReportesController extends Controller
     {
         $reporte = Respuesta::find($id);
         return view('reportes.show',compact('reporte'));
+    }
+
+    public function retailerIndex(Request $request)
+    {
+        $desde = $request->input('fecha_desde');
+        $hasta = $request->input('fecha_hasta');
+        if($desde == Null ){
+            $desde=" ";
+        }elseif($hasta == Null){
+            $hasta = " ";
+        }
+       
+        if(auth()->user()->roles->id != 1){
+            $users = User::where('id',auth()->user()->id)->pluck('name','id');
+        }else{
+            $users = User::where('id_rol',2)->pluck('name','id');// Solo el id del CZ
+        }
+        $reportes = Respuesta::where('id_checklist',1)->where('id_usuario',$request->input('tienda_id'))
+        ->whereRaw('fecha >="'.$request->input('fecha_desde').'" and fecha <="'.$request->input('fecha_hasta').'"')
+        ->paginate(10);// Uno es el check de auditor->retailer
+        return view('reportes.retailersIndex',compact('users','reportes'));
+    }
+
+    public function retailerShow($id)
+    {
+        $reporte = Respuesta::find($id);
+        return view('reportes.retailersShow',compact('reporte'));
     }
 }
