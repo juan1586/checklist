@@ -6,6 +6,7 @@ use App\Respuesta;
 use App\User;
 use App\Pregunta;
 use App\Checklist;
+use App\Services\Reporte;
 
 use Illuminate\Http\Request;
 
@@ -15,129 +16,91 @@ class ReportesController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('zoneC');
+        
     }
    // Este es reportes tiedas por fecha
     public function index(Request $request)
-    {
-        // Se inicializa variable
-        $check = $request->input('checklist_id');
-        $desde = $request->input('fecha_desde');
-        $hasta = $request->input('fecha_hasta');
-        $checklist = Checklist::where('rol_id',-1)->pluck('Nombre','id');
-        $id = $request->input('tienda_id');// Id de la tienda o usuario
-        $usuarioRequest = User::find($id); // Buscamos el usuario o tienda
-        if($usuarioRequest != NULL){            
-            $usuarioAnfitrion=$usuarioRequest->parent; // Para saber si es un anfitrion
-
-            // Esta parte me filtra los checklist q los CZ crearon para su anfitrion
-            if($usuarioAnfitrion != Null  ){
-                // Saca el id del CZ al que pertenece el anfitrion
-                $usuarioAnfitrion->id;
-                $checklist = Checklist::where('id_usuario', $usuarioAnfitrion->id)
-                ->orWhere('id_usuario',1)->where('tipo_id',2)->orWhere('tipo_id',3)
-                ->pluck('Nombre','id','Descripcion');
-            // Si es rol anfitrión y no pertenece a un CZ
-            }elseif($usuarioRequest->id_rol == 3 && $usuarioAnfitrion == Null){                
-                $checklist = Checklist::where('rol_id',-1)->pluck('Nombre','id','Descripcion');
-            }else{            
-                // Si 
-                $checklist = Checklist::where('rol_id',1)->where('id','!=',1)
-                ->where('tipo_id',1)->orWhere('tipo_id',3)->pluck('Nombre','id');
-            }
-        }
-         // Usuarios o tiendas que van a la vista al select
-         if(auth()->user()->roles->id != 1){ // Rol coordinador de zona, solo le manda sus anfitriones
-            $users = User::where('parent_id',auth()->user()->id)->pluck('name','id');
-
-        }else{
-            $users = User::where('id_rol','!=',1)->pluck('name','id');
-        }
-
-        if($check != Null ){
-            $reportes = Respuesta::where('id_checklist',$check)
-            ->whereRaw('fecha >="'.$request->input('fecha_desde').'" and fecha <="'.$request->input('fecha_hasta').'"')
-            ->paginate(10);
-        }elseif(auth()->user()->roles->id != 1){ // DO pendiente filtro para los CZ
-            $reportes = Respuesta::where('id_usuario',auth()->user()->id)
-            ->where('id_checklist','!=',1)->paginate(10);
-        }else{
-            $reportes = Respuesta::where('id_checklist','!=',1)->paginate(10);
-        }
-      
-        return View('reportes.index', compact('checklist','reportes','users'));
-    }
-
-    public function reporteTiendas(Request $request)
     { 
-       
-        // Se inicializa variable
-        $check = $request->input('checklist_id');
-        $checklist = Checklist::where('rol_id',-1)->pluck('Nombre','id');
-        $id = $request->input('tienda_id');// Id de la tienda o usuario
-        $usuarioRequest = User::find($id); // Buscamos el usuario o tienda
-        $checklistMsg = Checklist::find($check);// Se busca el checklist, solo para mandar a la vista
-        // Valida que tenga valor la consulta
-        if($usuarioRequest != NULL){            
-            $usuarioAnfitrion=$usuarioRequest->parent; // Para saber si es un anfitrion
-
-            // Esta parte me filtra los checklist q los CZ crearon para su anfitrion
-            if($usuarioAnfitrion != Null  ){
-                // Saca el id del CZ al que pertenece el anfitrion
-                $usuarioAnfitrion->id;
-                $checklist = Checklist::where('id_usuario', $usuarioAnfitrion->id)
-                ->orWhere('id_usuario',1)->where('tipo_id',2)->orWhere('tipo_id',3)
-                ->pluck('Nombre','id','Descripcion');
-            // Si es rol anfitrión y no pertenece a un CZ
-            }elseif($usuarioRequest->id_rol == 3 && $usuarioAnfitrion == Null){                
-                $checklist = Checklist::where('rol_id',-1)->pluck('Nombre','id','Descripcion');
-            }else{            
-                // Si 
-                $checklist = Checklist::where('rol_id',1)->where('id','!=',1)
-                ->where('tipo_id',[1,3])->pluck('Nombre','id');
-            }
-        }
+        //Clase que hace la validación de reportes es propia
+        $reportesTiendas = new Reporte();
+     
+        
         // Usuarios o tiendas que van a la vista al select
         if(auth()->user()->roles->id != 1){ // Rol coordinador de zona, solo le manda sus anfitriones
             $users = User::where('parent_id',auth()->user()->id)->pluck('name','id');
 
         }else{
+            //Si el rol es coordinador de operaciones, van todos, el diferente de uno es para no ir ellos mismos
+            $users = User::where('id_rol','!=',1)->pluck('name','id');
+        }
+
+        //Filtrado de reportes
+        // Esta función trae los checklist segun el usuarios
+        $checklist = $reportesTiendas->checklist($request);
+        // Esta función hace toda la validación de respuestas
+        $reportes = $reportesTiendas->respuestas($request);
+        return View('reportes.index', compact('checklist','reportes','users','dato'));
+    }
+    // Reportes tipo torta para las tiendas
+    public function reporteTiendas(Request $request)
+    { 
+        $desde = trim($request->get('fecha_desde'));
+        $hasta = trim($request->get('fecha_hasta'));
+        if($desde == Null){
+            $desde = "2000-11-20";
+        }
+        if($hasta == Null){
+            $hasta = "2020-11-20";
+        } 
+        //Clase que hace la validación de reportes es propia
+        $reportesTiendas = new Reporte();
+        // Id check
+        $check = $request->input('checklist_id');  
+        // Id de la tienda o usuario     
+        $id = $request->input('tienda_id');
+      
+        
+        // Esta función trae los checklist segun el usuarios
+        $checklist = $reportesTiendas->checklist($request);
+        // Usuarios o tiendas que van a la vista al select
+        if(auth()->user()->roles->id != 1){ // Rol coordinador de zona, solo le manda sus anfitriones
+            $users = User::where('parent_id',auth()->user()->id)->pluck('name','id');
+            
+        }else{
             $users = User::where('id_rol','!=',1)->pluck('name','id');
         }
         
-       
-        // Variable para el lava charts para mostrar el usuario
+        
+        // Variables para el lava charts para mostrar el usuario y check
+        $checklistMsg = Checklist::find($check);
         $user = User::where('id',$id)->pluck('name');
         
        // Validar preguntas respondidas con las que faltan por responder
         $totalPreguntasPorChecklist = Pregunta::where('id_checklist',$check)->get();
         $totalPreguntasPorChecklistRespondidas = Respuesta::where('id_checklist',$check)
         ->where('id_usuario',$id)->where('fecha',$request->input('fecha_desde'))->get();
-        
-        
+  
         
         $respuestaNo = Respuesta::where('respuesta',0)->where('id_usuario',$id)
         ->where('id_checklist',$check)
-        ->whereRaw('fecha >="'.$request->input('fecha_desde').'" and fecha <="'.$request->input('fecha_hasta').'"')->get();
-       
+        ->whereRaw('fecha >="'.$desde.'" and fecha <="'.$hasta.'"')->get();
         $respuestaSi = Respuesta::where('respuesta',1)->where('id_usuario',$id)->where('id_checklist',$check)
-        ->whereRaw('fecha >="'.$request->input('fecha_desde').'" and fecha <="'.$request->input('fecha_hasta').'"')->get();
+        ->whereRaw('fecha >="'.$desde.'" and fecha <="'.$hasta.'"')->get();
        
         $lava = new Lavacharts; //Se instancia la clase para los informes
       
         //Valida la cantidad de preguntas respondidas con si y con no
         $respuestas = $lava->DataTable();
         $respuestas->addStringColumn('Reasons')
-            ->addNumberColumn('Percent')
-            ->addRow(['Respondidas si', count($respuestaSi) ])
-            ->addRow(['Respondidas no',count($respuestaNo) ]);
+        ->addNumberColumn('Percent')
+        ->addRow(['Respondidas si', count($respuestaSi) ])
+        ->addRow(['Respondidas no',count($respuestaNo) ]);
             
     
+        //Total preguntas
         $totalP= count($totalPreguntasPorChecklist);
-        //dd($totalP);
         $respondidas=count($totalPreguntasPorChecklistRespondidas);
-        //dd($respondidas);
         $faltaResponder= $totalP-$respondidas;
-        //dd($faltaResponder);
         
         // Valida total preguntas con las q faltan por responder
         $preguntasYrespuestas = $lava->DataTable();
@@ -174,22 +137,16 @@ class ReportesController extends Controller
 
     public function retailerIndex(Request $request)
     {
-        $desde = $request->input('fecha_desde');
-        $hasta = $request->input('fecha_hasta');
-        if($desde == Null ){
-            $desde=" ";
-        }elseif($hasta == Null){
-            $hasta = " ";
-        }
-       
+        //Clase que hace la validación de reportes es propia
+        $reportesTiendas = new Reporte();
+
         if(auth()->user()->roles->id != 1){
             $users = User::where('id',auth()->user()->id)->pluck('name','id');
         }else{
             $users = User::where('id_rol',2)->pluck('name','id');// Solo el id del CZ
         }
-        $reportes = Respuesta::where('id_checklist',1)->where('id_usuario',$request->input('tienda_id'))
-        ->whereRaw('fecha >="'.$request->input('fecha_desde').'" and fecha <="'.$request->input('fecha_hasta').'"')
-        ->paginate(10);// Uno es el check de auditor->retailer
+        // Funcion que me trae las respuestas de los retailers segun tienda 
+        $reportes = $reportesTiendas->respuestasChecklistAuditorRetailer($request);
         return view('reportes.retailersIndex',compact('users','reportes'));
     }
 

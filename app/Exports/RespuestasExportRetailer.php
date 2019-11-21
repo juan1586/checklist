@@ -7,12 +7,12 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class RespuestasExport implements FromView, WithHeadings
+class RespuestasExportRetailer implements FromView, WithHeadings
 {
-    protected $respuestas;
-    public function __construct($respuestas = null)
+    protected $respuestasRetailer;
+    public function __construct($respuestasRetailer = null)
     {
-        $this->respuestas = $respuestas;
+        $this->respuestasRetailer = $respuestasRetailer;
     }
 
     public function headings(): array
@@ -30,8 +30,8 @@ class RespuestasExport implements FromView, WithHeadings
 
     public function view(): View
     {
-        return view('exports.respuestas', [
-            'reportes' =>  $this->respuestas
+        return view('exports.respuestasRetailer', [
+            'reportes' =>  $this->respuestasRetailer
         ]);
     }
 }

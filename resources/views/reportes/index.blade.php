@@ -1,7 +1,13 @@
 @extends('layouts.admin')
 
 @section('content') 
-    <a href="{{URL::action('ExportExcelController@exportRespuestas',['tienda_id'=>$users])}}" class="btn btn-success pull-right">Exportar a PDF</a>
+    <a href="{{ action('ExportExcelController@exportRespuestas', [
+        'tienda_id' => app('request')->input('tienda_id'),
+        'checklist_id' => app('request')->input('checklist_id'),
+        'fecha_desde' => app('request')->input('fecha_desde'),
+        'fecha_hasta' => app('request')->input('fecha_hasta')]) }}" 
+        class="btn btn-success pull-right">Exportar a Excel
+    </a>
     <br>
     <div>
         <h4>Reportes tiendas</h4>
@@ -11,7 +17,7 @@
             {!! Form::select('tienda_id',$users, null, ['class' => 'form-control','onchange'=>'marcado()','placeholder' => 'Tienda','name'=>'tienda_id']) !!}
             {!! Form::select('checklist_id',$checklist, null, ['class' => 'form-control','placeholder' => 'Seleccione checklist']) !!}
             <label>Desde</label>
-            {!! Form::date('fecha_desde', null, ['class' => 'form-control', 'placeholder' => 'Desde']) !!}
+            {!! Form::date('fecha_desde',null, ['class' => 'form-control', 'placeholder' => 'Desde']) !!}
             <label>Hasta</label>
             {!! Form::date('fecha_hasta',null, ['class' => 'form-control', 'placeholder' => 'Hasta']) !!}
             </div>
@@ -49,7 +55,11 @@
             </tbody>
         </table>
         <div class="myCenter">
-            {{ $reportes->render() }} {{--paginacion--}}
+            <!-- para no perder las variables del paginado -->
+            {!! $reportes->appends([ 'tienda_id' => app('request')->input('tienda_id'), 
+            'checklist_id' => app('request')->input('checklist_id'),
+            'fecha_desde' => app('request')->input('fecha_desde'),
+            'fecha_hasta' => app('request')->input('fecha_hasta')])->links(); !!}
         </div>
     </div>
     <script>
