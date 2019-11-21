@@ -36,10 +36,10 @@
 
 
     <script>
-    function marcado() {
+        function marcado() {
 
-        var formulario = document.getElementsByName('frms')[0];
-        formulario.submit();
-    }
+            var formulario = document.getElementsByName('frms')[0];
+            formulario.submit();
+        }
     </script>
 @endsection

@@ -1,7 +1,12 @@
 @extends('layouts.admin')
 
 @section('content') 
-    <a href="" class="btn btn-success pull-right">Exportar a PDF</a>
+    <a href="{{ action('ExportExcelController@exportRespuestasRetailers', [
+        'tienda_id' => app('request')->input('tienda_id'),
+        'fecha_desde' => app('request')->input('fecha_desde'),
+        'fecha_hasta' => app('request')->input('fecha_hasta')]) }}" 
+        class="btn btn-success pull-right">Exportar a Excel
+    </a>
     <br>
     <div>
         <h4>Reportes tiendas retailers</h4>
@@ -26,25 +31,36 @@
 
     <div class="card-body table-responsive ">
         <table class="table table-striped   ">
-            <th>Pregunta</th>
-            <th>Respuesta</th>    
-            <th>Prueba</th>    
-            <th>Fecha</th>                                               
+        <th>Pregunta</th>
+        <th>Respuesta</th>
+        <th>Checklist</th>                
+        <th>Tienda</th>                
+        <th>Prueba</th>    
+        <th>Fecha</th>                                              
             <th>&nbsp;</th>                                               
             <tbody>
-                @foreach ($reportes as $reporte)
-                    <tr>
-                        <td>{{$reporte->pregunta->Nombre}}</td>                  
-                        <td>{{ ($reporte->respuesta == 1)? "Si":"No" }}</td>
-                        <td>{{($reporte->imagen != Null)?"Cargada": "Sin archivos"}}</td>
-                        <td>{{$reporte->fecha->format('y-m-d')}}</td>
-                        <td><a href="{{ route('retailer.show',$reporte->id)}}" class="btn btn-info btn-sm">Ver</a></td>
-                    </tr>
-                @endforeach
+            @foreach ($reportes as $reporte)
+                <tr>
+                    <td>{{$reporte->pregunta->Nombre}}</td>               
+                    <td>{{ ($reporte->respuesta == 1)? "Si":"No" }}</td>
+                    <td>{{$reporte->pregunta->checklist->Nombre}}</td>                  
+                    <td>{{$reporte->user->name}}</td>                  
+                    <td>{{($reporte->imagen != Null)?"Cargada": "Sin archivos"}}</td>
+                    <td>{{$reporte->fecha->format('y-m-d')}}</td>
+                    <td><a href="{{ route('reporte.show',$reporte->id)}}" class="btn btn-info btn-sm">Ver</a></td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
         <div class="myCenter">
             {{ $reportes->render() }} {{--paginacion--}}
         </div>
     </div>
+    <script>
+        function marcado() {
+
+            var formulario = document.getElementsByName('frms')[0];
+            formulario.submit();
+        }
+    </script>
 @endsection
