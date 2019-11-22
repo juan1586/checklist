@@ -11,6 +11,7 @@ class PdfController extends Controller
 
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('zoneC');
     }
     // ESta función imprime el archivo pdf.
     public function pdf()

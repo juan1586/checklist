@@ -82,8 +82,11 @@
                     <p>
                         CheckList Specialized
                     </p>
-                </div>              
+                </div> 
+                <div class="box-footer">
+                    <div class="myCenter">&copy; 2019 - JPG</div>  
+                </div>             
             </div>
-        </div>
+        </div> 
     </body>
 </html>
