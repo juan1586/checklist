@@ -18,6 +18,7 @@
                         {!! Form::open(['route' => ['checklist.destroy',$checklist->id],
                         'method'=> 'DELETE']) !!}
                         <button class="btn btn-sm btn-danger">Eliminar</button>
+                        <a href="{{url()->previous()}}" class="btn btn-success btn-sm">Atras</a>
                         {!! Form::close() !!}
                         </div>
                 </div>

@@ -11,8 +11,9 @@ use App\User;
 use DB;
 class Reporte
 {
+    // Esta es para reportes tienda por fecha
    public function respuestas($request)
-   {  
+   { 
        // Se inicializa variable
        $check = trim($request->get('checklist_id'));
        $id = trim($request->get('tienda_id'));

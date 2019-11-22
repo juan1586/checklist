@@ -120,10 +120,10 @@ class ReportesController extends Controller
             $msgCheck = $checklistMsg->Nombre;
         }
         $lava->DonutChart('consulta1', $respuestas, [
-            'title' => 'Tienda: '.$usuario." \n Preguntas respondidas ".$respondidas,
+            'title' => 'Tienda: '.$usuario." \n Desde:".$desde. " hasta: ".$hasta,
         ]);    
         $lava->DonutChart('consulta2', $preguntasYrespuestas, [
-            'title' => 'Checklist: '.$msgCheck." \n fecha ".$request->input('fecha_desde')
+            'title' => 'Checklist: '.$msgCheck." \n fecha ".$desde
         ]);
     
         return view('reportes.reporteTiendas', compact('lava','users','checklist'));

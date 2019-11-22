@@ -12,7 +12,7 @@
                     <p>*{{ $sub->Nombre }}</p>
                 @endforeach
             
-            <p><a href="{{ route('Check', $pregunta->id_checklist)}}">Volver a la lista de chequeo</a></p>
+            <p><a href="{{ route('Check', $pregunta->id_checklist)}}">Ir a la lista de chequeo</a></p>
              @if(Auth::user()->id_rol != 3 ) <!-- Valida que el usuario no sea anfitrion. -->
               <p><a href="/pregunta"></i>Ir a menú principal</a></p>
             @endif

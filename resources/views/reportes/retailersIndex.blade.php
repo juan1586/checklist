@@ -9,7 +9,7 @@
     </a>
     <br>
     <div>
-        <h4>Reportes tiendas retailers</h4>
+        <h4>Reportes tiendas retailers {{$reportes->total()}} Registros</h4>
 
         {!! Form::model(Request::all(),['route' => 'retailer','method' => 'GET', 'class'=>'form-inline pull-right','name'=>'frms']) !!}
             <div class="form-group">
