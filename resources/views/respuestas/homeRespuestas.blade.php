@@ -29,8 +29,8 @@
 <script>
 
 
-    Push.Permission.has();
-    Push.create('Tienes algunos checklist por responder!! ');
+    //Push.Permission.has();
+    //Push.create('Tienes algunos checklist por responder!! ');
 </script> 
 @endif
 @endsection
