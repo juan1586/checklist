@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <h2>CheckList</h2>          
-
+<button id="permission-btn" onclick="main()">Activar Notificaciones</button>
 @if($checkPendientes > 0)
     <div class="container">
     <div class="row">
