@@ -32,7 +32,7 @@
     "test": "tests"
   },
   "dependencies": {
-    "ajv": "^6.10.2",
+    "ajv": "^6.12.3",
     "imagemin": "^5.0.0",
     "latest-version": "^5.1.0"
   },
